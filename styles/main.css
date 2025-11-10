@@ -798,3 +798,32 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
     }
 }
+
+/* Button-like links */
+.domain-btn,
+.cta-button.primary[href],
+.cta-button.secondary[href] {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.domain-btn {
+    background: none;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    align-self: flex-start;
+    text-decoration: none;
+}
+
+.domain-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    text-decoration: none;
+}
