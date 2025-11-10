@@ -1,1 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наземная техника | Архив Брони</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/catalog.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon">🛡️</span>
+                    <span class="logo-text">АРХИВ БРОНИ</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="../index.html" class="nav-link">Главная</a></li>
+                    <li><a href="ground-vehicles.html" class="nav-link active">Наземная</a></li>
+                    <li><a href="air-vehicles.html" class="nav-link">Воздушная</a></li>
+                    <li><a href="naval-vehicles.html" class="nav-link">Морская</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Поиск техники..." class="search-input">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                    <button class="mobile-menu-btn">☰</button>
+                </div>
+            </div>
+        </nav>
+    </header>
 
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="../index.html">Главная</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="current">Наземная техника</span>
+            </div>
+            
+            <div class="page-header-content">
+                <h1 class="page-title">Наземная техника</h1>
+                <p class="page-subtitle">Танки, БМП, САУ, бронетранспортеры и другая наземная военная техника</p>
+                
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <span class="stat-number">247</span>
+                        <span class="stat-label">единиц техники</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="stat-number">18</span>
+                        <span class="stat-label">стран</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">категорий</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-header">
+                <h2>Фильтры</h2>
+                <button class="clear-filters" id="clearFilters">Сбросить все</button>
+            </div>
+            
+            <div class="filters-grid">
+                <!-- Search Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">Поиск по названию</label>
+                    <div class="search-filter">
+                        <input type="text" id="searchFilter" placeholder="Например: Т-72, Abrams...">
+                        <button class="search-filter-btn">🔍</button>
+                    </div>
+                </div>
+
+                <!-- Type Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">Тип техники</label>
+                    <div class="filter-chips" id="typeFilter">
+                        <button class="filter-chip active" data-type="all">Все</button>
+                        <button class="filter-chip" data-type="mbt">ОБТ</button>
+                        <button class="filter-chip" data-type="light-tank">Лёгкие танки</button>
+                        <button class="filter-chip" data-type="medium-tank">Средние танки</button>
+                        <button class="filter-chip" data-type="heavy-tank">Тяжёлые танки</button>
+                        <button class="filter-chip" data-type="ifv">БМП</button>
+                        <button class="filter-chip" data-type="apc">БТР</button>
+                        <button class="filter-chip" data-type="spg">САУ</button>
+                        <button class="filter-chip" data-type="atgm">ПТРК</button>
+                    </div>
+                </div>
+
+                <!-- Country Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">Страна</label>
+                    <select class="filter-select" id="countryFilter">
+                        <option value="all">Все страны</option>
+                        <option value="ussr">СССР/Россия</option>
+                        <option value="usa">США</option>
+                        <option value="germany">Германия</option>
+                        <option value="uk">Великобритания</option>
+                        <option value="france">Франция</option>
+                        <option value="china">Китай</option>
+                        <option value="japan">Япония</option>
+                        <option value="israel">Израиль</option>
+                    </select>
+                </div>
+
+                <!-- Era Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">Период</label>
+                    <select class="filter-select" id="eraFilter">
+                        <option value="all">Все периоды</option>
+                        <option value="ww2">Вторая мировая</option>
+                        <option value="cold-war">Холодная война</option>
+                        <option value="modern">Современность</option>
+                    </select>
+                </div>
+
+                <!-- Year Range -->
+                <div class="filter-group">
+                    <label class="filter-label">Годы службы</label>
+                    <div class="range-filter">
+                        <div class="range-inputs">
+                            <input type="number" id="yearFrom" placeholder="1940" min="1900" max="2024">
+                            <span class="range-separator">—</span>
+                            <input type="number" id="yearTo" placeholder="2024" min="1900" max="2024">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Filters Toggle -->
+                <div class="filter-group">
+                    <button class="advanced-filters-toggle" id="advancedToggle">
+                        <span>Расширенные фильтры</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                </div>
+
+                <!-- Advanced Filters -->
+                <div class="advanced-filters" id="advancedFilters">
+                    <div class="filter-group">
+                        <label class="filter-label">Калибр орудия (мм)</label>
+                        <select class="filter-select" id="caliberFilter">
+                            <option value="all">Любой</option>
+                            <option value="small">до 75мм</option>
+                            <option value="medium">76-105мм</option>
+                            <option value="large">106-125мм</option>
+                            <option value="very-large">126мм и более</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Экипаж</label>
+                        <select class="filter-select" id="crewFilter">
+                            <option value="all">Любой</option>
+                            <option value="1-2">1-2 человека</option>
+                            <option value="3-4">3-4 человека</option>
+                            <option value="5+">5+ человек</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Масса</label>
+                        <select class="filter-select" id="weightFilter">
+                            <option value="all">Любая</option>
+                            <option value="light">до 20т (лёгкая)</option>
+                            <option value="medium">20-40т (средняя)</option>
+                            <option value="heavy">40-60т (тяжёлая)</option>
+                            <option value="super-heavy">60т+ (сверхтяжёлая)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Filters -->
+            <div class="active-filters" id="activeFilters">
+                <!-- Active filters will be displayed here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="results-header">
+                <div class="results-info">
+                    <h3>Найдено единиц: <span id="resultsCount">247</span></h3>
+                    <div class="sort-controls">
+                        <label>Сортировка:</label>
+                        <select id="sortSelect">
+                            <option value="name">По названию (А-Я)</option>
+                            <option value="name-desc">По названию (Я-А)</option>
+                            <option value="year">По году (старые)</option>
+                            <option value="year-desc">По году (новые)</option>
+                            <option value="weight">По массе (лёгкие)</option>
+                            <option value="weight-desc">По массе (тяжёлые)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="view-controls">
+                    <button class="view-btn active" data-view="grid" title="Сетка">
+                        ▦
+                    </button>
+                    <button class="view-btn" data-view="list" title="Список">
+                        ☰
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vehicles Grid -->
+            <div class="vehicles-grid" id="vehiclesGrid">
+                <!-- Vehicle cards will be dynamically loaded here -->
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Загрузка техники...</p>
+            </div>
+
+            <!-- No Results State -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>Ничего не найдено</h3>
+                <p>Попробуйте изменить параметры фильтрации</p>
+                <button class="cta-button primary" id="resetSearch">Сбросить фильтры</button>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMore">Загрузить ещё</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Quick view content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <span class="logo-icon">🛡️</span>
+                        <span class="logo-text">АРХИВ БРОНИ</span>
+                    </div>
+                    <p class="footer-description">
+                        Энциклопедия военной техники от древности до наших дней. 
+                        История, характеристики и технические details.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Разделы</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Главная</a></li>
+                        <li><a href="ground-vehicles.html">Наземная</a></li>
+                        <li><a href="air-vehicles.html">Воздушная</a></li>
+                        <li><a href="naval-vehicles.html">Морская</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Категории</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Танки</a></li>
+                        <li><a href="#">БМП</a></li>
+                        <li><a href="#">БТР</a></li>
+                        <li><a href="#">САУ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">Telegram</a>
+                        <a href="#" class="social-link">Email</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Архив Брони. Фанатский проект. Не преследует политических целей.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/catalog.js"></script>
+</body>
+</html>
