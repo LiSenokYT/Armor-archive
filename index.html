@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архив Брони - Энциклопедия военной техники</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon">🛡️</span>
+                    <span class="logo-text">АРХИВ БРОНИ</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#about">О проекте</a>
+                    <a href="#collections">Коллекции</a>
+                    <a href="#featured">Экспонаты</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">ЭНЦИКЛОПЕДИЯ</span>
+                <span class="title-line">ВОЕННОЙ МОЩИ</span>
+            </h1>
+            <p class="hero-subtitle">От первых броневиков до невидимых истребителей. Самый полный и технологичный архив военной техники в рунете.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('collections')">Исследовать Архив</button>
+                <button class="btn btn-secondary" onclick="showRandomVehicle()">Случайная Машина</button>
+            </div>
+        </div>
+
+        <div class="hero-background">
+            <div class="background-slide active" style="background-image: url('https://images.unsplash.com/photo-1587735304152-2a99a0b7969c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="background-slide" style="background-image: url('https://images.unsplash.com/photo-1580554530778-ca36943939b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="background-slide" style="background-image: url('https://images.unsplash.com/photo-1587735304152-2a99a0b7969c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Архив, которому нет аналогов</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>"Архив Брони" — это не просто сборник сухих фактов. Это живая, постоянно пополняемая энциклопедия, где каждая единица техники представлена с максимальной детализацией.</p>
+                    <p>Мы собираем не только ТТХ, но и историю создания, модификации, боевое применение и тактическую роль. От винтовок до авианосцев — всё в одном месте.</p>
+                    <p class="highlight">Наша философия: Современный дизайн, интуитивная навигация и глубокий контент. Здесь техника оживает.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section id="collections" class="collections">
+        <div class="container">
+            <h2 class="section-title">Коллекции</h2>
+            <div class="collections-grid">
+                <div class="collection-card" data-category="ground">
+                    <div class="card-icon">🎯</div>
+                    <h3>Наземная техника</h3>
+                    <p>Танки, БМП, САУ и другая бронированная техника</p>
+                    <span class="card-count">~450 единиц</span>
+                </div>
+                
+                <div class="collection-card" data-category="air">
+                    <div class="card-icon">✈️</div>
+                    <h3>Авиация</h3>
+                    <p>Истребители, бомбардировщики, вертолеты</p>
+                    <span class="card-count">~300 единиц</span>
+                </div>
+                
+                <div class="collection-card" data-category="navy">
+                    <div class="card-icon">⛴️</div>
+                    <h3>Флот</h3>
+                    <p>Авианосцы, крейсеры, подлодки</p>
+                    <span class="card-count">~200 единиц</span>
+                </div>
+                
+                <div class="collection-card" data-category="special">
+                    <div class="card-icon">🎮</div>
+                    <h3>Спец. техника</h3>
+                    <p>Ракетные комплексы, системы ПВО</p>
+                    <span class="card-count">~150 единиц</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section id="featured" class="featured">
+        <div class="container">
+            <h2 class="section-title">Избранные экспонаты</h2>
+            <div class="featured-slider">
+                <div class="slider-container">
+                    <div class="slider-track">
+                        <div class="slide">
+                            <div class="vehicle-card">
+                                <div class="vehicle-image" style="background-image: url('https://images.unsplash.com/photo-1580554530778-ca36943939b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                                <div class="vehicle-info">
+                                    <h3>Т-14 "Армата"</h3>
+                                    <p>Российский основной боевой танк третьего поколения с необитаемой башней</p>
+                                    <div class="vehicle-stats">
+                                        <div class="stat">
+                                            <span class="stat-label">Скорость</span>
+                                            <span class="stat-value">80 км/ч</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-label">Экипаж</span>
+                                            <span class="stat-value">3 чел.</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-label">Калибр</span>
+                                            <span class="stat-value">125 мм</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline">Изучить подробнее</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slide">
+                            <div class="vehicle-card">
+                                <div class="vehicle-image" style="background-image: url('https://images.unsplash.com/photo-1589553416261-695503a8c67f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                                <div class="vehicle-info">
+                                    <h3>F-22 "Raptor"</h3>
+                                    <p>Американский истребитель пятого поколения с технологией стелс</p>
+                                    <div class="vehicle-stats">
+                                        <div class="stat">
+                                            <span class="stat-label">Скорость</span>
+                                            <span class="stat-value">2,410 км/ч</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-label">Дальность</span>
+                                            <span class="stat-value">2,960 км</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-label">Вооружение</span>
+                                            <span class="stat-value">20 мм пушка</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline">Изучить подробнее</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <button class="slider-btn prev">‹</button>
+                    <button class="slider-btn next">›</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label">единиц техники</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">стран-производителей</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="120">0</div>
+                    <div class="stat-label">лет истории</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <span class="logo-icon">🛡️</span>
+                        <span class="logo-text">АРХИВ БРОНИ</span>
+                    </div>
+                    <p>Самый полный архив военной техники</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <a href="#about">О проекте</a>
+                    <a href="#collections">Коллекции</a>
+                    <a href="#featured">Экспонаты</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <a href="#">Telegram</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">Почта</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Поиск</h4>
+                    <div class="search-box">
+                        <input type="text" placeholder="Найти технику...">
+                        <button>🔍</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Архив Брони. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
