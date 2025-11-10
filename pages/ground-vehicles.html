@@ -67,14 +67,24 @@
         </div>
     </section>
 
-    <!-- Filters Section -->
+    <!-- Compact Filters Section -->
     <section class="filters-section">
         <div class="container">
             <div class="filters-header">
-                <h2>Фильтры</h2>
+                <h2>
+                    <span>🔍</span>
+                    Фильтры
+                </h2>
+                <div class="filters-actions">
+                    <button class="filters-toggle" id="filtersToggle">
+                        <span>Показать фильтры</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
                 <button class="clear-filters" id="clearFilters">Сбросить все</button>
             </div>
+        </div>
             
+        <div class="filters-container" id="filtersContainer">
             <div class="filters-grid">
                 <!-- Search Filter -->
                 <div class="filter-group">
@@ -85,7 +95,7 @@
                     </div>
                 </div>
 
-                <!-- Type Filter -->
+                <!-- Type Filter - Expanded -->
                 <div class="filter-group">
                     <label class="filter-label">Тип техники</label>
                     <div class="filter-chips" id="typeFilter">
@@ -96,8 +106,13 @@
                         <button class="filter-chip" data-type="heavy-tank">Тяжёлые танки</button>
                         <button class="filter-chip" data-type="ifv">БМП</button>
                         <button class="filter-chip" data-type="apc">БТР</button>
+                        <button class="filter-chip" data-type="bmd">БМД</button>
+                        <button class="filter-chip" data-type="brdm">БРДМ</button>
                         <button class="filter-chip" data-type="spg">САУ</button>
-                        <button class="filter-chip" data-type="atgm">ПТРК</button>
+                        <button class="filter-chip" data-type="spaag">ЗСУ</button>
+                        <button class="filter-chip" data-type="engineer">ИРМ</button>
+                        <button class="filter-chip" data-type="recovery">МТО</button>
+                        <button class="filter-chip" data-type="cbrn">РХБЗ</button>
                     </div>
                 </div>
 
@@ -189,7 +204,8 @@
                 <!-- Active filters will be displayed here -->
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Results Section -->
     <section class="results-section">
