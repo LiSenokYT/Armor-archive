@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
@@ -17,360 +16,88 @@
                     <span class="logo-icon">🛡️</span>
                     <span class="logo-text">АРХИВ БРОНИ</span>
                 </div>
-                
                 <ul class="nav-links">
                     <li><a href="../index.html" class="nav-link">Главная</a></li>
                     <li><a href="ground-vehicles.html" class="nav-link">Наземная</a></li>
                     <li><a href="../index.html" class="nav-link">Воздушная</a></li>
                     <li><a href="../index.html" class="nav-link">Морская</a></li>
                 </ul>
-                
-                <div class="nav-actions">
-                    <div class="search-box">
-                        <input type="text" placeholder="Поиск техники..." class="search-input">
-                        <button class="search-btn">🔍</button>
-                    </div>
-                    <button class="mobile-menu-btn">☰</button>
-                </div>
             </div>
         </nav>
     </header>
 
-    <!-- Vehicle Hero Section -->
-    <section class="vehicle-hero">
-        <div class="container">
-            <div class="breadcrumbs">
-                <a href="../index.html">Главная</a>
-                <span class="breadcrumb-separator">/</span>
-                <a href="ground-vehicles.html">Наземная техника</a>
-                <span class="breadcrumb-separator">/</span>
-                <span class="current">Т-72Б3</span>
-            </div>
-            
-            <div class="vehicle-header">
-                <div class="vehicle-badge">ОБТ</div>
-                <h1 class="vehicle-title">Т-72Б3</h1>
-                <p class="vehicle-subtitle">Основной боевой танк третьего поколения</p>
-                
-                <div class="vehicle-quick-info">
-                    <div class="info-item">
-                        <span class="info-label">Страна</span>
-                        <span class="info-value">Россия</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Годы производства</span>
-                        <span class="info-value">2012-н.в.</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Экипаж</span>
-                        <span class="info-value">3 человека</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Боевая масса</span>
-                        <span class="info-value">46 т</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
     <main class="vehicle-main">
         <div class="container">
-            <div class="vehicle-layout">
-                <!-- Sidebar -->
-                <aside class="vehicle-sidebar">
-                    <!-- Navigation -->
-                    <nav class="sidebar-nav">
-                        <ul>
-                            <li><a href="#overview" class="nav-link active">Обзор</a></li>
-                            <li><a href="#specs" class="nav-link">Характеристики</a></li>
-                            <li><a href="#history" class="nav-link">История</a></li>
-                            <li><a href="#evolution" class="nav-link">Эволюция</a></li>
-                            <li><a href="#modifications" class="nav-link">Модификации</a></li>
-                        </ul>
-                    </nav>
+            <div class="breadcrumbs">
+                <a href="../index.html">Главная</a> / 
+                <a href="ground-vehicles.html">Наземная техника</a> / 
+                <span>Т-72Б3</span>
+            </div>
+            
+            <div class="vehicle-hero-simple">
+                <h1>Т-72Б3</h1>
+                <p>Основной боевой танк третьего поколения</p>
+                <div class="vehicle-badge">ОБТ</div>
+            </div>
 
-                    <!-- Quick Stats -->
-                    <div class="quick-stats-sidebar">
-                        <h3>Ключевые параметры</h3>
-                        <div class="stat-item">
-                            <span class="stat-label">Калибр орудия</span>
-                            <span class="stat-value">125 мм</span>
+            <div class="vehicle-content-simple">
+                <div class="content-section">
+                    <h2>📋 Обзор</h2>
+                    <p>Т-72Б3 — глубокая модернизация советского основного боевого танка Т-72, разработанная в 2010-х годах и составляющая основу танкового парка Российской армии.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>⚙️ Характеристики</h2>
+                    <div class="specs-grid-simple">
+                        <div class="spec-item">
+                            <span>Страна:</span>
+                            <strong>Россия</strong>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Мощность двигателя</span>
-                            <span class="stat-value">1130 л.с.</span>
+                        <div class="spec-item">
+                            <span>Экипаж:</span>
+                            <strong>3 человека</strong>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Скорость по шоссе</span>
-                            <span class="stat-value">60 км/ч</span>
+                        <div class="spec-item">
+                            <span>Масса:</span>
+                            <strong>46 тонн</strong>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Запас хода</span>
-                            <span class="stat-value">500 км</span>
+                        <div class="spec-item">
+                            <span>Калибр орудия:</span>
+                            <strong>125 мм</strong>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Боекомплект</span>
-                            <span class="stat-value">45 выстрелов</span>
+                        <div class="spec-item">
+                            <span>Двигатель:</span>
+                            <strong>1130 л.с.</strong>
+                        </div>
+                        <div class="spec-item">
+                            <span>Скорость:</span>
+                            <strong>60 км/ч</strong>
                         </div>
                     </div>
-                </aside>
+                </div>
 
-                <!-- Content -->
-                <div class="vehicle-content">
-                    <!-- Overview Section -->
-                    <section id="overview" class="content-section">
-                        <div class="section-header">
-                            <h2>Обзор</h2>
-                            <div class="section-badge">Основная информация</div>
+                <div class="content-section">
+                    <h2>📜 История</h2>
+                    <p>Принят на вооружение в 2012 году как глубокая модернизация танка Т-72. Основные улучшения включают новую систему управления огнем, усиленную броневую защиту и более мощный двигатель.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>🔄 Модификации</h2>
+                    <div class="modifications-simple">
+                        <div class="mod-item">
+                            <h4>Т-72Б3 обр. 2012</h4>
+                            <p>Базовая версия с двигателем 840 л.с.</p>
                         </div>
-                        
-                        <div class="overview-grid">
-                            <div class="main-image">
-                                <div class="image-placeholder">
-                                    <span>Т-72Б3</span>
-                                    <small>Основной боевой танк Российской армии</small>
-                                </div>
-                            </div>
-                            
-                            <div class="overview-text">
-                                <p class="lead">Т-72Б3 — глубокая модернизация советского основного боевого танка Т-72, разработанная в 2010-х годах и составляющая основу танкового парка Российской армии.</p>
-                                
-                                <div class="features-grid">
-                                    <div class="feature">
-                                        <div class="feature-icon">🎯</div>
-                                        <div class="feature-content">
-                                            <h4>Современная СУО</h4>
-                                            <p>Цифровая система управления огнём «Сосна-У» с тепловизионным прицелом</p>
-                                        </div>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature-icon">🛡️</div>
-                                        <div class="feature-content">
-                                            <h4>Усиленная защита</h4>
-                                            <p>Динамическая защита «Реликт» и противокумулятивные экраны</p>
-                                        </div>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature-icon">⚡</div>
-                                        <div class="feature-content">
-                                            <h4>Мощный двигатель</h4>
-                                            <p>Дизельный двигатель В-92С2Ф мощностью 1130 лошадиных сил</p>
-                                        </div>
-                                    </div>
-                                    <div class="feature">
-                                        <div class="feature-icon">🎮</div>
-                                        <div class="feature-content">
-                                            <h4>Автомат заряжания</h4>
-                                            <p>22 выстрела в автомате заряжания, скорострельность 8 выстр./мин</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="mod-item">
+                            <h4>Т-72Б3 обр. 2016</h4>
+                            <p>Модернизированная версия с двигателем 1130 л.с.</p>
                         </div>
-                    </section>
+                    </div>
+                </div>
 
-                    <!-- Specifications Section -->
-                    <section id="specs" class="content-section">
-                        <div class="section-header">
-                            <h2>Технические характеристики</h2>
-                            <button class="toggle-specs" id="toggleSpecs">
-                                <span>Показать все характеристики</span>
-                                <span class="toggle-icon">▼</span>
-                            </button>
-                        </div>
-
-                        <div class="specs-container">
-                            <!-- Basic Specs -->
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">Основные параметры</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Боевая масса</span>
-                                        <span class="spec-value">46 т</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Экипаж</span>
-                                        <span class="spec-value">3 человека</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Длина с пушкой</span>
-                                        <span class="spec-value">9.53 м</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Длина корпуса</span>
-                                        <span class="spec-value">6.86 м</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Ширина</span>
-                                        <span class="spec-value">3.46 м</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Высота</span>
-                                        <span class="spec-value">2.23 м</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Клиренс</span>
-                                        <span class="spec-value">0.49 м</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Armament Specs -->
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">Вооружение</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Основное орудие</span>
-                                        <span class="spec-value">125-мм 2А46М-5</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Тип орудия</span>
-                                        <span class="spec-value">Гладкоствольная пушка</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Боекомплект</span>
-                                        <span class="spec-value">45 выстрелов</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Спаренный пулемёт</span>
-                                        <span class="spec-value">7.62-мм ПКТМ</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Зенитный пулемёт</span>
-                                        <span class="spec-value">12.7-мм НСВТ</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- History Section -->
-                    <section id="history" class="content-section">
-                        <div class="section-header">
-                            <h2>История создания и службы</h2>
-                            <div class="section-badge">Хронология</div>
-                        </div>
-
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-year">1973</div>
-                                <div class="timeline-content">
-                                    <h4>Появление Т-72</h4>
-                                    <p>Принятие на вооружение основного боевого танка Т-72, ставшего одним из самых массовых танков в истории</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">1985</div>
-                                <div class="timeline-content">
-                                    <h4>Т-72Б</h4>
-                                    <p>Модернизация с комплексом управляемого вооружения и динамической защитой</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item highlight">
-                                <div class="timeline-year">2012</div>
-                                <div class="timeline-content">
-                                    <h4>Принятие на вооружение Т-72Б3</h4>
-                                    <p>Официальное принятие модернизированного танка Т-72Б3 на вооружение ВС РФ</p>
-                                    <div class="highlight-badge">Важное событие</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Evolution Section -->
-                    <section id="evolution" class="content-section">
-                        <div class="section-header">
-                            <h2>Эволюция конструкции</h2>
-                            <div class="section-badge">Развитие</div>
-                        </div>
-
-                        <div class="evolution-tree">
-                            <div class="evolution-item">
-                                <div class="evolution-year">1973</div>
-                                <div class="evolution-card">
-                                    <h4>Т-72 «Урал»</h4>
-                                    <p>Упрощённая и более технологичная версия Т-64</p>
-                                    <div class="evolution-features">
-                                        <span>Упрощённая конструкция</span>
-                                        <span>Массовое производство</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="evolution-connector"></div>
-                            
-                            <div class="evolution-item">
-                                <div class="evolution-year">1985</div>
-                                <div class="evolution-card">
-                                    <h4>Т-72Б</h4>
-                                    <p>Модернизация с управляемым вооружением</p>
-                                    <div class="evolution-features">
-                                        <span>КУВ 9К120 «Свирь»</span>
-                                        <span>Динамическая защита</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="evolution-connector"></div>
-                            
-                            <div class="evolution-item current">
-                                <div class="evolution-year">2012</div>
-                                <div class="evolution-card">
-                                    <h4>Т-72Б3</h4>
-                                    <p>Глубокая модернизация для современных условий</p>
-                                    <div class="evolution-features">
-                                        <span>СУО «Сосна-У»</span>
-                                        <span>Двигатель 1130 л.с.</span>
-                                        <span>ДЗ «Реликт»</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Modifications Section -->
-                    <section id="modifications" class="content-section">
-                        <div class="section-header">
-                            <h2>Модификации</h2>
-                            <div class="section-badge">Варианты</div>
-                        </div>
-
-                        <div class="modifications-grid">
-                            <div class="modification-card">
-                                <div class="modification-badge">Базовая</div>
-                                <h4>Т-72Б3 обр. 2012 г.</h4>
-                                <div class="modification-specs">
-                                    <div class="spec">
-                                        <span>Двигатель:</span>
-                                        <strong>В-84-1 (840 л.с.)</strong>
-                                    </div>
-                                    <div class="spec">
-                                        <span>СУО:</span>
-                                        <strong>1А40-4</strong>
-                                    </div>
-                                </div>
-                                <p class="modification-desc">Первая версия модернизации с улучшенной системой управления огнём</p>
-                            </div>
-
-                            <div class="modification-card featured">
-                                <div class="modification-badge">Основная</div>
-                                <h4>Т-72Б3 обр. 2016 г.</h4>
-                                <div class="modification-specs">
-                                    <div class="spec">
-                                        <span>Двигатель:</span>
-                                        <strong>В-92С2Ф (1130 л.с.)</strong>
-                                    </div>
-                                    <div class="spec">
-                                        <span>СУО:</span>
-                                        <strong>«Сосна-У»</strong>
-                                    </div>
-                                </div>
-                                <p class="modification-desc">Глубокая модернизация с новым двигателем и современной СУО</p>
-                            </div>
-                        </div>
-                    </section>
+                <div class="navigation-buttons">
+                    <a href="ground-vehicles.html" class="nav-button">← Назад к каталогу</a>
+                    <button onclick="history.back()" class="nav-button secondary">← Назад</button>
                 </div>
             </div>
         </div>
@@ -378,36 +105,8 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo">
-                        <span class="logo-icon">🛡️</span>
-                        <span class="logo-text">АРХИВ БРОНИ</span>
-                    </div>
-                    <p class="footer-description">
-                        Энциклопедия военной техники от древности до наших дней. 
-                        История, характеристики и технические details.
-                    </p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Разделы</h4>
-                    <ul class="footer-links">
-                        <li><a href="../index.html">Главная</a></li>
-                        <li><a href="ground-vehicles.html">Наземная</a></li>
-                        <li><a href="../index.html">Воздушная</a></li>
-                        <li><a href="../index.html">Морская</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Архив Брони. Фанатский проект. Не преследует политических целей.</p>
-            </div>
+            <p>&copy; 2024 Архив Брони. Фанатский проект.</p>
         </div>
     </footer>
-
-    <script src="../js/script.js"></script>
-    <script src="../js/vehicle-details.js"></script>
 </body>
 </html>
