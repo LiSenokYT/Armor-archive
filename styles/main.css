@@ -706,3 +706,95 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+/* Additional styles for catalog pages */
+
+/* Quick View Styles */
+.quick-view {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.quick-view-image {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-view-image .vehicle-image-placeholder.large {
+    font-size: 1.5rem;
+}
+
+.quick-view-content h2 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.quick-view-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.quick-view-specs {
+    margin-bottom: 2rem;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spec-row:last-child {
+    border-bottom: none;
+}
+
+.spec-name {
+    color: var(--text-secondary);
+}
+
+.spec-value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.quick-view-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.quick-view-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Responsive for quick view */
+@media (max-width: 768px) {
+    .quick-view {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-view-image {
+        height: 150px;
+    }
+    
+    .quick-view-actions {
+        flex-direction: column;
+    }
+}
