@@ -660,25 +660,34 @@ class VehicleCatalog {
 
         // Select filters
         ['country', 'era', 'caliber', 'crew', 'weight'].forEach(filter => {
-            document.getElementById(filter + 'Filter').addEventListener('change', (e) => {
-                this.filters[filter] = e.target.value;
-                this.applyFilters();
-            });
+            const element = document.getElementById(filter + 'Filter');
+            if (element) {
+                element.addEventListener('change', (e) => {
+                    this.filters[filter] = e.target.value;
+                    this.applyFilters();
+                });
+            }
         });
 
         // Year range filters
         ['yearFrom', 'yearTo'].forEach(filter => {
-            document.getElementById(filter).addEventListener('input', (e) => {
-                this.filters[filter] = e.target.value;
-                this.applyFilters();
-            });
+            const element = document.getElementById(filter);
+            if (element) {
+                element.addEventListener('input', (e) => {
+                    this.filters[filter] = e.target.value;
+                    this.applyFilters();
+                });
+            }
         });
 
         // Sort control
-        document.getElementById('sortSelect').addEventListener('change', (e) => {
-            this.sortBy = e.target.value;
-            this.applyFilters();
-        });
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', (e) => {
+                this.sortBy = e.target.value;
+                this.applyFilters();
+            });
+        }
 
         // View controls
         document.querySelectorAll('.view-btn').forEach(btn => {
@@ -691,37 +700,55 @@ class VehicleCatalog {
         });
 
         // Advanced filters toggle
-        document.getElementById('advancedToggle').addEventListener('click', (e) => {
-            e.target.classList.toggle('active');
-            document.getElementById('advancedFilters').classList.toggle('active');
-        });
+        const advancedToggle = document.getElementById('advancedToggle');
+        if (advancedToggle) {
+            advancedToggle.addEventListener('click', (e) => {
+                e.target.classList.toggle('active');
+                document.getElementById('advancedFilters').classList.toggle('active');
+            });
+        }
 
         // Clear filters
-        document.getElementById('clearFilters').addEventListener('click', () => {
-            this.clearFilters();
-        });
+        const clearFilters = document.getElementById('clearFilters');
+        if (clearFilters) {
+            clearFilters.addEventListener('click', () => {
+                this.clearFilters();
+            });
+        }
 
         // Reset search
-        document.getElementById('resetSearch')?.addEventListener('click', () => {
-            this.clearFilters();
-        });
+        const resetSearch = document.getElementById('resetSearch');
+        if (resetSearch) {
+            resetSearch.addEventListener('click', () => {
+                this.clearFilters();
+            });
+        }
 
         // Load more
-        document.getElementById('loadMore').addEventListener('click', () => {
-            this.loadMore();
-        });
+        const loadMore = document.getElementById('loadMore');
+        if (loadMore) {
+            loadMore.addEventListener('click', () => {
+                this.loadMore();
+            });
+        }
 
         // Quick view modal
-        document.getElementById('modalClose').addEventListener('click', () => {
-            this.closeModal();
-        });
+        const modalClose = document.getElementById('modalClose');
+        if (modalClose) {
+            modalClose.addEventListener('click', () => {
+                this.closeModal();
+            });
+        }
 
         // Close modal on backdrop click
-        document.getElementById('quickViewModal').addEventListener('click', (e) => {
-            if (e.target.id === 'quickViewModal') {
-                this.closeModal();
-            }
-        });
+        const modal = document.getElementById('quickViewModal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target.id === 'quickViewModal') {
+                    this.closeModal();
+                }
+            });
+        }
     }
 
     toggleFilters(show) {
@@ -740,10 +767,436 @@ class VehicleCatalog {
         }
     }
 
-    // ... остальные методы остаются такими же, как в предыдущей версии ...
-    // (applyFilters, matchesFilters, sortVehicles, updateActiveFilters, removeFilter, clearFilters, displayVehicles, createVehicleCard, bindVehicleCardEvents, showQuickView, createQuickViewContent, closeModal, updateViewMode, loadMore)
+    applyFilters() {
+        this.currentPage = 1;
+        this.filteredVehicles = this.vehicles.filter(vehicle => {
+            return this.matchesFilters(vehicle);
+        });
 
-    // Обновленный метод для получения меток типов
+        this.sortVehicles();
+        this.updateActiveFilters();
+        this.displayVehicles();
+    }
+
+    matchesFilters(vehicle) {
+        // Search filter
+        if (this.filters.search && !vehicle.name.toLowerCase().includes(this.filters.search.toLowerCase())) {
+            return false;
+        }
+
+        // Type filter
+        if (this.filters.type !== 'all' && vehicle.type !== this.filters.type) {
+            return false;
+        }
+
+        // Country filter
+        if (this.filters.country !== 'all' && vehicle.country !== this.filters.country) {
+            return false;
+        }
+
+        // Era filter
+        if (this.filters.era !== 'all' && vehicle.era !== this.filters.era) {
+            return false;
+        }
+
+        // Year range filter
+        if (this.filters.yearFrom && vehicle.year < parseInt(this.filters.yearFrom)) {
+            return false;
+        }
+        if (this.filters.yearTo && vehicle.year > parseInt(this.filters.yearTo)) {
+            return false;
+        }
+
+        // Caliber filter
+        if (this.filters.caliber !== 'all') {
+            const caliber = vehicle.caliber;
+            switch (this.filters.caliber) {
+                case 'small': if (caliber > 75) return false; break;
+                case 'medium': if (caliber <= 75 || caliber > 105) return false; break;
+                case 'large': if (caliber <= 105 || caliber > 125) return false; break;
+                case 'very-large': if (caliber <= 125) return false; break;
+            }
+        }
+
+        // Crew filter
+        if (this.filters.crew !== 'all') {
+            const crew = vehicle.crew;
+            switch (this.filters.crew) {
+                case '1-2': if (crew > 2) return false; break;
+                case '3-4': if (crew < 3 || crew > 4) return false; break;
+                case '5+': if (crew < 5) return false; break;
+            }
+        }
+
+        // Weight filter
+        if (this.filters.weight !== 'all') {
+            const weight = vehicle.weight;
+            switch (this.filters.weight) {
+                case 'light': if (weight > 20) return false; break;
+                case 'medium': if (weight <= 20 || weight > 40) return false; break;
+                case 'heavy': if (weight <= 40 || weight > 60) return false; break;
+                case 'super-heavy': if (weight <= 60) return false; break;
+            }
+        }
+
+        return true;
+    }
+
+    sortVehicles() {
+        this.filteredVehicles.sort((a, b) => {
+            switch (this.sortBy) {
+                case 'name':
+                    return a.name.localeCompare(b.name);
+                case 'name-desc':
+                    return b.name.localeCompare(a.name);
+                case 'year':
+                    return a.year - b.year;
+                case 'year-desc':
+                    return b.year - a.year;
+                case 'weight':
+                    return a.weight - b.weight;
+                case 'weight-desc':
+                    return b.weight - a.weight;
+                default:
+                    return 0;
+            }
+        });
+    }
+
+    updateActiveFilters() {
+        const activeFiltersContainer = document.getElementById('activeFilters');
+        if (!activeFiltersContainer) return;
+
+        activeFiltersContainer.innerHTML = '';
+
+        Object.entries(this.filters).forEach(([key, value]) => {
+            if (value && value !== 'all') {
+                const filterElement = document.createElement('div');
+                filterElement.className = 'active-filter';
+                
+                let label = '';
+                switch (key) {
+                    case 'search':
+                        if (!value) return;
+                        label = `Поиск: "${value}"`;
+                        break;
+                    case 'type':
+                        label = `Тип: ${this.getTypeLabel(value)}`;
+                        break;
+                    case 'country':
+                        label = `Страна: ${this.getCountryLabel(value)}`;
+                        break;
+                    case 'era':
+                        label = `Период: ${this.getEraLabel(value)}`;
+                        break;
+                    case 'yearFrom':
+                        label = `Год от: ${value}`;
+                        break;
+                    case 'yearTo':
+                        label = `Год до: ${value}`;
+                        break;
+                    case 'caliber':
+                        label = `Калибр: ${this.getCaliberLabel(value)}`;
+                        break;
+                    case 'crew':
+                        label = `Экипаж: ${this.getCrewLabel(value)}`;
+                        break;
+                    case 'weight':
+                        label = `Масса: ${this.getWeightLabel(value)}`;
+                        break;
+                }
+
+                if (label) {
+                    filterElement.innerHTML = `
+                        ${label}
+                        <button class="active-filter-remove" data-filter="${key}">×</button>
+                    `;
+                    activeFiltersContainer.appendChild(filterElement);
+                }
+            }
+        });
+
+        // Add remove event listeners
+        document.querySelectorAll('.active-filter-remove').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const filter = e.target.dataset.filter;
+                this.removeFilter(filter);
+            });
+        });
+    }
+
+    removeFilter(filter) {
+        switch (filter) {
+            case 'search':
+                this.filters.search = '';
+                document.getElementById('searchFilter').value = '';
+                break;
+            case 'type':
+                this.filters.type = 'all';
+                document.querySelectorAll('.filter-chip').forEach(chip => {
+                    chip.classList.remove('active');
+                    if (chip.dataset.type === 'all') chip.classList.add('active');
+                });
+                break;
+            case 'country':
+            case 'era':
+            case 'caliber':
+            case 'crew':
+            case 'weight':
+                this.filters[filter] = 'all';
+                const filterElement = document.getElementById(filter + 'Filter');
+                if (filterElement) filterElement.value = 'all';
+                break;
+            case 'yearFrom':
+                this.filters.yearFrom = '';
+                document.getElementById('yearFrom').value = '';
+                break;
+            case 'yearTo':
+                this.filters.yearTo = '';
+                document.getElementById('yearTo').value = '';
+                break;
+        }
+        this.applyFilters();
+    }
+
+    clearFilters() {
+        this.filters = {
+            search: '',
+            type: 'all',
+            country: 'all',
+            era: 'all',
+            yearFrom: '',
+            yearTo: '',
+            caliber: 'all',
+            crew: 'all',
+            weight: 'all'
+        };
+
+        // Reset UI
+        document.getElementById('searchFilter').value = '';
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.classList.remove('active');
+            if (chip.dataset.type === 'all') chip.classList.add('active');
+        });
+        
+        const filtersToReset = ['country', 'era', 'caliber', 'crew', 'weight'];
+        filtersToReset.forEach(filter => {
+            const element = document.getElementById(filter + 'Filter');
+            if (element) element.value = 'all';
+        });
+        
+        document.getElementById('yearFrom').value = '';
+        document.getElementById('yearTo').value = '';
+
+        this.applyFilters();
+    }
+
+    displayVehicles() {
+        const grid = document.getElementById('vehiclesGrid');
+        const resultsCount = document.getElementById('resultsCount');
+        const noResults = document.getElementById('noResults');
+        const loadingState = document.getElementById('loadingState');
+
+        if (!grid) return;
+
+        // Hide loading, show appropriate state
+        if (loadingState) loadingState.style.display = 'none';
+
+        if (this.filteredVehicles.length === 0) {
+            grid.style.display = 'none';
+            if (noResults) noResults.style.display = 'block';
+            if (resultsCount) resultsCount.textContent = '0';
+            return;
+        }
+
+        if (noResults) noResults.style.display = 'none';
+        grid.style.display = 'grid';
+        if (resultsCount) resultsCount.textContent = this.filteredVehicles.length;
+
+        // Get current page items
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        const currentVehicles = this.filteredVehicles.slice(0, endIndex);
+
+        grid.innerHTML = currentVehicles.map(vehicle => this.createVehicleCard(vehicle)).join('');
+
+        // Update load more button
+        const loadMoreBtn = document.getElementById('loadMore');
+        if (loadMoreBtn) {
+            if (endIndex >= this.filteredVehicles.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        }
+
+        // Add click events to new cards
+        this.bindVehicleCardEvents();
+    }
+
+    createVehicleCard(vehicle) {
+        const typeLabel = this.getTypeLabel(vehicle.type);
+        const countryLabel = this.getCountryLabel(vehicle.country);
+
+        return `
+            <div class="vehicle-card" data-vehicle-id="${vehicle.id}">
+                <div class="vehicle-badge">${countryLabel}</div>
+                <div class="vehicle-image">
+                    <div class="vehicle-image-placeholder">
+                        ${vehicle.name}
+                    </div>
+                </div>
+                <div class="vehicle-content">
+                    <div class="vehicle-header">
+                        <h3 class="vehicle-title">${vehicle.name}</h3>
+                    </div>
+                    <div class="vehicle-country">${countryLabel} • ${vehicle.year}г</div>
+                    <div class="vehicle-type">${typeLabel}</div>
+                    
+                    <div class="vehicle-specs">
+                        <div class="vehicle-spec">
+                            <span class="spec-label">Масса</span>
+                            <span class="spec-value">${vehicle.weight}т</span>
+                        </div>
+                        <div class="vehicle-spec">
+                            <span class="spec-label">Экипаж</span>
+                            <span class="spec-value">${vehicle.crew}</span>
+                        </div>
+                        <div class="vehicle-spec">
+                            <span class="spec-label">Калибр</span>
+                            <span class="spec-value">${vehicle.caliber}мм</span>
+                        </div>
+                        <div class="vehicle-spec">
+                            <span class="spec-label">Скорость</span>
+                            <span class="spec-value">${vehicle.specs.speed}км/ч</span>
+                        </div>
+                    </div>
+                    
+                    <p class="vehicle-description">${vehicle.description}</p>
+                    
+                    <div class="vehicle-actions">
+                        <button class="vehicle-btn quick-view-btn" data-vehicle-id="${vehicle.id}">
+                            Быстрый просмотр
+                        </button>
+                        <a href="../vehicle-details.html?id=${vehicle.id}" class="vehicle-btn secondary">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    bindVehicleCardEvents() {
+        document.querySelectorAll('.quick-view-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const vehicleId = parseInt(e.target.dataset.vehicleId);
+                this.showQuickView(vehicleId);
+            });
+        });
+
+        document.querySelectorAll('.vehicle-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('vehicle-btn')) {
+                    const vehicleId = parseInt(card.dataset.vehicleId);
+                    // Navigate to detail page
+                    window.location.href = `../vehicle-details.html?id=${vehicleId}`;
+                }
+            });
+        });
+    }
+
+    showQuickView(vehicleId) {
+        const vehicle = this.vehicles.find(v => v.id === vehicleId);
+        if (!vehicle) return;
+
+        const modalBody = document.getElementById('modalBody');
+        if (!modalBody) return;
+
+        modalBody.innerHTML = this.createQuickViewContent(vehicle);
+
+        document.getElementById('quickViewModal').classList.add('active');
+    }
+
+    createQuickViewContent(vehicle) {
+        const typeLabel = this.getTypeLabel(vehicle.type);
+        const countryLabel = this.getCountryLabel(vehicle.country);
+
+        return `
+            <div class="quick-view">
+                <div class="quick-view-image">
+                    <div class="vehicle-image-placeholder large">
+                        ${vehicle.name}
+                    </div>
+                </div>
+                <div class="quick-view-content">
+                    <h2>${vehicle.name}</h2>
+                    <div class="quick-view-meta">
+                        <span class="meta-item">${countryLabel}</span>
+                        <span class="meta-item">${vehicle.year} год</span>
+                        <span class="meta-item">${typeLabel}</span>
+                    </div>
+                    
+                    <div class="quick-view-specs">
+                        <div class="spec-row">
+                            <span class="spec-name">Экипаж:</span>
+                            <span class="spec-value">${vehicle.crew} человека</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Боевая масса:</span>
+                            <span class="spec-value">${vehicle.weight} тонн</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Основное вооружение:</span>
+                            <span class="spec-value">${vehicle.specs.mainGun}</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Двигатель:</span>
+                            <span class="spec-value">${vehicle.specs.engine}</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Макс. скорость:</span>
+                            <span class="spec-value">${vehicle.specs.speed} км/ч</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-name">Бронирование:</span>
+                            <span class="spec-value">${vehicle.specs.armor}</span>
+                        </div>
+                    </div>
+                    
+                    <p class="quick-view-description">${vehicle.description}</p>
+                    
+                    <div class="quick-view-actions">
+                        <a href="../vehicle-details.html?id=${vehicle.id}" class="vehicle-btn">
+                            Полное описание
+                        </a>
+                        <button class="vehicle-btn secondary" onclick="catalog.closeModal()">
+                            Закрыть
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    closeModal() {
+        document.getElementById('quickViewModal').classList.remove('active');
+    }
+
+    updateViewMode() {
+        const grid = document.getElementById('vehiclesGrid');
+        if (grid) {
+            grid.className = `vehicles-grid ${this.viewMode}-view`;
+        }
+    }
+
+    loadMore() {
+        this.currentPage++;
+        this.displayVehicles();
+    }
+
+    // Helper methods for labels
     getTypeLabel(type) {
         const types = {
             'mbt': 'ОБТ',
@@ -763,7 +1216,6 @@ class VehicleCatalog {
         return types[type] || type;
     }
 
-    // Остальные вспомогательные методы остаются без изменений
     getCountryLabel(country) {
         const countries = {
             'ussr': 'СССР/Россия',
