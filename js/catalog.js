@@ -1078,7 +1078,7 @@ class VehicleCatalog {
                         <button class="vehicle-btn quick-view-btn" data-vehicle-id="${vehicle.id}">
                             Быстрый просмотр
                         </button>
-                        <a href="../vehicle-details.html?id=${vehicle.id}" class="vehicle-btn secondary">
+                        <a href="vehicle-details.html" class="vehicle-btn secondary">
                             Подробнее
                         </a>
                     </div>
