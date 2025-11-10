@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
@@ -35,6 +36,7 @@
         </nav>
     </header>
 
+    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <div class="breadcrumbs">
@@ -65,15 +67,26 @@
         </div>
     </section>
 
+    <!-- Compact Filters Section -->
     <section class="filters-section">
         <div class="container">
             <div class="filters-header">
-                <h2>🔍 Фильтры</h2>
-                <button class="clear-filters" id="clearFilters">Сбросить все</button>
+                <h2>
+                    <span>🔍</span>
+                    Фильтры
+                </h2>
+                <div class="filters-actions">
+                    <button class="filters-toggle" id="filtersToggle">
+                        <span>Показать фильтры</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                    <button class="clear-filters" id="clearFilters">Сбросить все</button>
+                </div>
             </div>
             
-            <div class="filters-container active" id="filtersContainer">
+            <div class="filters-container" id="filtersContainer">
                 <div class="filters-grid">
+                    <!-- Search Filter -->
                     <div class="filter-group">
                         <label class="filter-label">Поиск по названию</label>
                         <div class="search-filter">
@@ -82,6 +95,7 @@
                         </div>
                     </div>
 
+                    <!-- Type Filter - Expanded -->
                     <div class="filter-group">
                         <label class="filter-label">Тип техники</label>
                         <div class="filter-chips" id="typeFilter">
@@ -92,30 +106,172 @@
                             <button class="filter-chip" data-type="heavy-tank">Тяжёлые танки</button>
                             <button class="filter-chip" data-type="ifv">БМП</button>
                             <button class="filter-chip" data-type="apc">БТР</button>
+                            <button class="filter-chip" data-type="bmd">БМД</button>
+                            <button class="filter-chip" data-type="brdm">БРДМ</button>
+                            <button class="filter-chip" data-type="spg">САУ</button>
+                            <button class="filter-chip" data-type="spaag">ЗСУ</button>
+                            <button class="filter-chip" data-type="engineer">ИРМ</button>
+                            <button class="filter-chip" data-type="recovery">МТО</button>
+                            <button class="filter-chip" data-type="cbrn">РХБЗ</button>
                         </div>
                     </div>
+
+                    <!-- Country Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">Страна</label>
+                        <select class="filter-select" id="countryFilter">
+                            <option value="all">Все страны</option>
+                            <option value="ussr">СССР/Россия</option>
+                            <option value="usa">США</option>
+                            <option value="germany">Германия</option>
+                            <option value="uk">Великобритания</option>
+                            <option value="france">Франция</option>
+                            <option value="china">Китай</option>
+                            <option value="japan">Япония</option>
+                            <option value="israel">Израиль</option>
+                            <option value="sweden">Швеция</option>
+                        </select>
+                    </div>
+
+                    <!-- Era Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label">Период</label>
+                        <select class="filter-select" id="eraFilter">
+                            <option value="all">Все периоды</option>
+                            <option value="ww2">Вторая мировая</option>
+                            <option value="cold-war">Холодная война</option>
+                            <option value="modern">Современность</option>
+                        </select>
+                    </div>
+
+                    <!-- Year Range -->
+                    <div class="filter-group">
+                        <label class="filter-label">Годы службы</label>
+                        <div class="range-filter">
+                            <div class="range-inputs">
+                                <input type="number" id="yearFrom" placeholder="1940" min="1900" max="2024">
+                                <span class="range-separator">—</span>
+                                <input type="number" id="yearTo" placeholder="2024" min="1900" max="2024">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Filters Toggle -->
+                    <div class="filter-group">
+                        <button class="advanced-filters-toggle" id="advancedToggle">
+                            <span>Расширенные фильтры</span>
+                            <span class="toggle-icon">▼</span>
+                        </button>
+                    </div>
+
+                    <!-- Advanced Filters -->
+                    <div class="advanced-filters" id="advancedFilters">
+                        <div class="filter-group">
+                            <label class="filter-label">Калибр орудия (мм)</label>
+                            <select class="filter-select" id="caliberFilter">
+                                <option value="all">Любой</option>
+                                <option value="small">до 75мм</option>
+                                <option value="medium">76-105мм</option>
+                                <option value="large">106-125мм</option>
+                                <option value="very-large">126мм и более</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Экипаж</label>
+                            <select class="filter-select" id="crewFilter">
+                                <option value="all">Любой</option>
+                                <option value="1-2">1-2 человека</option>
+                                <option value="3-4">3-4 человека</option>
+                                <option value="5+">5+ человек</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Масса</label>
+                            <select class="filter-select" id="weightFilter">
+                                <option value="all">Любая</option>
+                                <option value="light">до 20т (лёгкая)</option>
+                                <option value="medium">20-40т (средняя)</option>
+                                <option value="heavy">40-60т (тяжёлая)</option>
+                                <option value="super-heavy">60т+ (сверхтяжёлая)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Filters -->
+                <div class="active-filters" id="activeFilters">
+                    <!-- Active filters will be displayed here -->
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Results Section -->
     <section class="results-section">
         <div class="container">
             <div class="results-header">
                 <div class="results-info">
                     <h3>Найдено единиц: <span id="resultsCount">30</span></h3>
+                    <div class="sort-controls">
+                        <label>Сортировка:</label>
+                        <select id="sortSelect">
+                            <option value="name">По названию (А-Я)</option>
+                            <option value="name-desc">По названию (Я-А)</option>
+                            <option value="year">По году (старые)</option>
+                            <option value="year-desc">По году (новые)</option>
+                            <option value="weight">По массе (лёгкие)</option>
+                            <option value="weight-desc">По массе (тяжёлые)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="view-controls">
+                    <button class="view-btn active" data-view="grid" title="Сетка">
+                        ▦
+                    </button>
+                    <button class="view-btn" data-view="list" title="Список">
+                        ☰
+                    </button>
                 </div>
             </div>
 
+            <!-- Vehicles Grid -->
             <div class="vehicles-grid" id="vehiclesGrid">
-                <!-- Техника будет здесь -->
+                <!-- Vehicle cards will be dynamically loaded here -->
             </div>
 
-            <div class="navigation-buttons">
-                <a href="../index.html" class="nav-button">← На главную</a>
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Загрузка техники...</p>
+            </div>
+
+            <!-- No Results State -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>Ничего не найдено</h3>
+                <p>Попробуйте изменить параметры фильтрации</p>
+                <button class="cta-button primary" id="resetSearch">Сбросить фильтры</button>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMore">Загрузить ещё</button>
             </div>
         </div>
     </section>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Quick view content will be loaded here -->
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -127,6 +283,7 @@
                     </div>
                     <p class="footer-description">
                         Энциклопедия военной техники от древности до наших дней. 
+                        История, характеристики и технические details.
                     </p>
                 </div>
                 
@@ -139,80 +296,371 @@
                         <li><a href="../index.html">Морская</a></li>
                     </ul>
                 </div>
+                
+                <div class="footer-section">
+                    <h4>Категории</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Танки</a></li>
+                        <li><a href="#">БМП</a></li>
+                        <li><a href="#">БТР</a></li>
+                        <li><a href="#">САУ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">Telegram</a>
+                        <a href="#" class="social-link">Email</a>
+                    </div>
+                </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Архив Брони. Фанатский проект.</p>
+                <p>&copy; 2024 Архив Брони. Фанатский проект. Не преследует политических целей.</p>
             </div>
         </div>
     </footer>
 
     <script>
-    // Простой каталог для ground-vehicles.html
-    document.addEventListener('DOMContentLoaded', function() {
-        const vehicles = [
-            {
-                id: 1,
-                name: "Т-72Б3",
-                country: "Россия",
-                type: "mbt", 
-                year: 2016,
-                weight: 46,
-                crew: 3,
-                caliber: 125,
-                description: "Современная модернизация основного боевого танка Т-72 с улучшенной защитой и системами управления огнём.",
-                specs: {
-                    speed: 60,
-                    engine: "В-84-1, 840 л.с.",
-                    armor: "Комбинированная"
-                }
-            },
-            {
-                id: 2, 
-                name: "M1A2 Abrams",
-                country: "США",
-                type: "mbt",
-                year: 1992,
-                weight: 63,
-                crew: 4, 
-                caliber: 120,
-                description: "Американский основной боевой танк третьего поколения с цифровой системой управления.",
-                specs: {
-                    speed: 67,
-                    engine: "AGT-1500, 1500 л.с.", 
-                    armor: "Композитная"
-                }
-            },
-            {
-                id: 3,
-                name: "БМП-3", 
-                country: "Россия",
-                type: "ifv",
-                year: 1987,
-                weight: 18,
-                crew: 3,
-                caliber: 100,
-                description: "Боевая машина пехоты с уникальным комплексом вооружения.",
-                specs: {
-                    speed: 70,
-                    engine: "УТД-29, 500 л.с.",
-                    armor: "Алюминиевая"
-                }
-            }
-        ];
+    // Vehicle Catalog with ALL filters and CORRECT links
+    class VehicleCatalog {
+        constructor() {
+            this.vehicles = [];
+            this.filteredVehicles = [];
+            this.filters = {
+                search: '',
+                type: 'all',
+                country: 'all',
+                era: 'all',
+                yearFrom: '',
+                yearTo: '',
+                caliber: 'all',
+                crew: 'all',
+                weight: 'all'
+            };
+            this.sortBy = 'name';
+            this.viewMode = 'grid';
+            this.filtersVisible = false;
+            
+            this.init();
+        }
 
-        function displayVehicles() {
+        init() {
+            this.loadVehicles();
+            this.bindEvents();
+            this.applyFilters();
+            this.toggleFilters(false);
+        }
+
+        loadVehicles() {
+            this.vehicles = [
+                {
+                    id: 1,
+                    name: "Т-72Б3",
+                    country: "ussr",
+                    type: "mbt",
+                    era: "modern",
+                    year: 2016,
+                    weight: 46,
+                    crew: 3,
+                    caliber: 125,
+                    description: "Современная модернизация основного боевого танка Т-72 с улучшенной защитой и системами управления огнём.",
+                    specs: {
+                        speed: 60,
+                        engine: "В-84-1, 840 л.с.",
+                        armor: "Комбинированная",
+                        mainGun: "125mm 2A46M"
+                    }
+                },
+                {
+                    id: 2,
+                    name: "M1A2 Abrams",
+                    country: "usa",
+                    type: "mbt",
+                    era: "modern",
+                    year: 1992,
+                    weight: 63,
+                    crew: 4,
+                    caliber: 120,
+                    description: "Американский основной боевой танк третьего поколения с цифровой системой управления.",
+                    specs: {
+                        speed: 67,
+                        engine: "AGT-1500, 1500 л.с.",
+                        armor: "Композитная",
+                        mainGun: "120mm M256"
+                    }
+                },
+                {
+                    id: 3,
+                    name: "Leopard 2A7",
+                    country: "germany",
+                    type: "mbt",
+                    era: "modern",
+                    year: 2014,
+                    weight: 67,
+                    crew: 4,
+                    caliber: 120,
+                    description: "Немецкий основной боевой танк, считающийся одним из лучших в мире.",
+                    specs: {
+                        speed: 72,
+                        engine: "MTU MB 873, 1500 л.с.",
+                        armor: "Композитная",
+                        mainGun: "120mm Rh-120"
+                    }
+                },
+                {
+                    id: 4,
+                    name: "БМП-3",
+                    country: "ussr",
+                    type: "ifv",
+                    era: "cold-war",
+                    year: 1987,
+                    weight: 18,
+                    crew: 3,
+                    caliber: 100,
+                    description: "Боевая машина пехоты с уникальным комплексом вооружения.",
+                    specs: {
+                        speed: 70,
+                        engine: "УТД-29, 500 л.с.",
+                        armor: "Алюминиевая",
+                        mainGun: "100mm 2A70"
+                    }
+                },
+                {
+                    id: 5,
+                    name: "Т-34-85",
+                    country: "ussr",
+                    type: "medium-tank",
+                    era: "ww2",
+                    year: 1944,
+                    weight: 32,
+                    crew: 5,
+                    caliber: 85,
+                    description: "Легендарный советский средний танк времён Второй мировой войны.",
+                    specs: {
+                        speed: 55,
+                        engine: "В-2-34, 500 л.с.",
+                        armor: "Катаная сталь",
+                        mainGun: "85mm ЗИС-С-53"
+                    }
+                },
+                {
+                    id: 6,
+                    name: "Tiger I",
+                    country: "germany",
+                    type: "heavy-tank",
+                    era: "ww2",
+                    year: 1942,
+                    weight: 57,
+                    crew: 5,
+                    caliber: 88,
+                    description: "Немецкий тяжёлый танк, один из самых известных танков Второй мировой.",
+                    specs: {
+                        speed: 45,
+                        engine: "Maybach HL230, 700 л.с.",
+                        armor: "Катаная сталь",
+                        mainGun: "88mm KwK 36"
+                    }
+                }
+            ];
+
+            this.displayVehicles();
+        }
+
+        bindEvents() {
+            // Toggle filters visibility
+            document.getElementById('filtersToggle').addEventListener('click', () => {
+                this.toggleFilters();
+            });
+
+            // Search filter
+            document.getElementById('searchFilter').addEventListener('input', (e) => {
+                this.filters.search = e.target.value;
+                this.applyFilters();
+            });
+
+            // Type filter chips
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    e.target.classList.add('active');
+                    this.filters.type = e.target.dataset.type;
+                    this.applyFilters();
+                });
+            });
+
+            // Select filters
+            ['country', 'era', 'caliber', 'crew', 'weight'].forEach(filter => {
+                const element = document.getElementById(filter + 'Filter');
+                if (element) {
+                    element.addEventListener('change', (e) => {
+                        this.filters[filter] = e.target.value;
+                        this.applyFilters();
+                    });
+                }
+            });
+
+            // Year range filters
+            ['yearFrom', 'yearTo'].forEach(filter => {
+                const element = document.getElementById(filter);
+                if (element) {
+                    element.addEventListener('input', (e) => {
+                        this.filters[filter] = e.target.value;
+                        this.applyFilters();
+                    });
+                }
+            });
+
+            // Sort control
+            const sortSelect = document.getElementById('sortSelect');
+            if (sortSelect) {
+                sortSelect.addEventListener('change', (e) => {
+                    this.sortBy = e.target.value;
+                    this.applyFilters();
+                });
+            }
+
+            // View controls
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    this.viewMode = e.target.dataset.view;
+                    this.updateViewMode();
+                });
+            });
+
+            // Advanced filters toggle
+            const advancedToggle = document.getElementById('advancedToggle');
+            if (advancedToggle) {
+                advancedToggle.addEventListener('click', (e) => {
+                    e.target.classList.toggle('active');
+                    document.getElementById('advancedFilters').classList.toggle('active');
+                });
+            }
+
+            // Clear filters
+            const clearFilters = document.getElementById('clearFilters');
+            if (clearFilters) {
+                clearFilters.addEventListener('click', () => {
+                    this.clearFilters();
+                });
+            }
+
+            // Reset search
+            const resetSearch = document.getElementById('resetSearch');
+            if (resetSearch) {
+                resetSearch.addEventListener('click', () => {
+                    this.clearFilters();
+                });
+            }
+        }
+
+        toggleFilters(show) {
+            this.filtersVisible = show !== undefined ? show : !this.filtersVisible;
+            const container = document.querySelector('.filters-container');
+            const toggle = document.getElementById('filtersToggle');
+            
+            if (this.filtersVisible) {
+                container.classList.add('active');
+                toggle.classList.add('active');
+                toggle.innerHTML = '<span>Скрыть фильтры</span><span class="toggle-icon">▼</span>';
+            } else {
+                container.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.innerHTML = '<span>Показать фильтры</span><span class="toggle-icon">▼</span>';
+            }
+        }
+
+        applyFilters() {
+            this.filteredVehicles = this.vehicles.filter(vehicle => {
+                return this.matchesFilters(vehicle);
+            });
+
+            this.sortVehicles();
+            this.updateActiveFilters();
+            this.displayVehicles();
+        }
+
+        matchesFilters(vehicle) {
+            // Search filter
+            if (this.filters.search && !vehicle.name.toLowerCase().includes(this.filters.search.toLowerCase())) {
+                return false;
+            }
+
+            // Type filter
+            if (this.filters.type !== 'all' && vehicle.type !== this.filters.type) {
+                return false;
+            }
+
+            return true;
+        }
+
+        sortVehicles() {
+            this.filteredVehicles.sort((a, b) => {
+                switch (this.sortBy) {
+                    case 'name':
+                        return a.name.localeCompare(b.name);
+                    case 'name-desc':
+                        return b.name.localeCompare(a.name);
+                    case 'year':
+                        return a.year - b.year;
+                    case 'year-desc':
+                        return b.year - a.year;
+                    case 'weight':
+                        return a.weight - b.weight;
+                    case 'weight-desc':
+                        return b.weight - a.weight;
+                    default:
+                        return 0;
+                }
+            });
+        }
+
+        displayVehicles() {
             const grid = document.getElementById('vehiclesGrid');
-            grid.innerHTML = vehicles.map(vehicle => `
-                <div class="vehicle-card">
-                    <div class="vehicle-badge">${vehicle.country}</div>
+            const resultsCount = document.getElementById('resultsCount');
+            const noResults = document.getElementById('noResults');
+            const loadingState = document.getElementById('loadingState');
+
+            if (!grid) return;
+
+            loadingState.style.display = 'none';
+
+            if (this.filteredVehicles.length === 0) {
+                grid.style.display = 'none';
+                if (noResults) noResults.style.display = 'block';
+                if (resultsCount) resultsCount.textContent = '0';
+                return;
+            }
+
+            if (noResults) noResults.style.display = 'none';
+            grid.style.display = 'grid';
+            if (resultsCount) resultsCount.textContent = this.filteredVehicles.length;
+
+            grid.innerHTML = this.filteredVehicles.map(vehicle => this.createVehicleCard(vehicle)).join('');
+        }
+
+        createVehicleCard(vehicle) {
+            const typeLabel = this.getTypeLabel(vehicle.type);
+            const countryLabel = this.getCountryLabel(vehicle.country);
+
+            return `
+                <div class="vehicle-card" data-vehicle-id="${vehicle.id}">
+                    <div class="vehicle-badge">${countryLabel}</div>
                     <div class="vehicle-image">
-                        <div class="vehicle-image-placeholder">${vehicle.name}</div>
+                        <div class="vehicle-image-placeholder">
+                            ${vehicle.name}
+                        </div>
                     </div>
                     <div class="vehicle-content">
-                        <h3 class="vehicle-title">${vehicle.name}</h3>
-                        <div class="vehicle-country">${vehicle.country} • ${vehicle.year}г</div>
-                        <div class="vehicle-type">${vehicle.type === 'mbt' ? 'ОБТ' : 'БМП'}</div>
+                        <div class="vehicle-header">
+                            <h3 class="vehicle-title">${vehicle.name}</h3>
+                        </div>
+                        <div class="vehicle-country">${countryLabel} • ${vehicle.year}г</div>
+                        <div class="vehicle-type">${typeLabel}</div>
                         
                         <div class="vehicle-specs">
                             <div class="vehicle-spec">
@@ -242,53 +690,87 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `;
         }
 
-        displayVehicles();
+        clearFilters() {
+            this.filters = {
+                search: '',
+                type: 'all',
+                country: 'all',
+                era: 'all',
+                yearFrom: '',
+                yearTo: '',
+                caliber: 'all',
+                crew: 'all',
+                weight: 'all'
+            };
 
-        // Простой поиск
-        document.getElementById('searchFilter').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.vehicle-card');
-            
-            cards.forEach(card => {
-                const title = card.querySelector('.vehicle-title').textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Фильтры по типу
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.addEventListener('click', function() {
-                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-                
-                const type = this.dataset.type;
-                const cards = document.querySelectorAll('.vehicle-card');
-                
-                cards.forEach(card => {
-                    if (type === 'all' || card.querySelector('.vehicle-type').textContent.includes(
-                        type === 'mbt' ? 'ОБТ' : 'БМП'
-                    )) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        document.getElementById('clearFilters').addEventListener('click', function() {
+            // Reset UI
             document.getElementById('searchFilter').value = '';
-            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-            document.querySelector('.filter-chip[data-type="all"]').classList.add('active');
-            document.querySelectorAll('.vehicle-card').forEach(card => card.style.display = 'block');
-        });
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active');
+                if (chip.dataset.type === 'all') chip.classList.add('active');
+            });
+            
+            const filtersToReset = ['country', 'era', 'caliber', 'crew', 'weight'];
+            filtersToReset.forEach(filter => {
+                const element = document.getElementById(filter + 'Filter');
+                if (element) element.value = 'all';
+            });
+            
+            document.getElementById('yearFrom').value = '';
+            document.getElementById('yearTo').value = '';
+
+            this.applyFilters();
+        }
+
+        updateViewMode() {
+            const grid = document.getElementById('vehiclesGrid');
+            if (grid) {
+                grid.className = `vehicles-grid ${this.viewMode}-view`;
+            }
+        }
+
+        // Helper methods
+        getTypeLabel(type) {
+            const types = {
+                'mbt': 'ОБТ',
+                'light-tank': 'Лёгкий танк',
+                'medium-tank': 'Средний танк',
+                'heavy-tank': 'Тяжёлый танк',
+                'ifv': 'БМП',
+                'apc': 'БТР',
+                'spg': 'САУ',
+                'brdm': 'БРДМ',
+                'bmd': 'БМД',
+                'cbrn': 'РХБЗ',
+                'engineer': 'ИРМ',
+                'spaag': 'ЗСУ',
+                'recovery': 'МТО'
+            };
+            return types[type] || type;
+        }
+
+        getCountryLabel(country) {
+            const countries = {
+                'ussr': 'СССР/Россия',
+                'usa': 'США',
+                'germany': 'Германия',
+                'uk': 'Великобритания',
+                'france': 'Франция',
+                'china': 'Китай',
+                'japan': 'Япония',
+                'israel': 'Израиль',
+                'sweden': 'Швеция'
+            };
+            return countries[country] || country;
+        }
+    }
+
+    // Initialize catalog when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        window.catalog = new VehicleCatalog();
     });
     </script>
 </body>
