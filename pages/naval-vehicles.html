@@ -344,7 +344,6 @@
             }
         }
 
-        // Добавляем недостающие методы
         toggleFilters(show) {
             this.filtersVisible = show !== undefined ? show : !this.filtersVisible;
             const container = document.querySelector('.filters-container');
@@ -365,7 +364,30 @@
             this.filteredVehicles = this.vehicles.filter(vehicle => {
                 return this.matchesFilters(vehicle);
             });
+            
+            this.sortVehicles(); // ← ДОБАВЛЯЕМ СОРТИРОВКУ
             this.displayVehicles();
+        }
+
+        sortVehicles() {
+            this.filteredVehicles.sort((a, b) => {
+                switch (this.sortBy) {
+                    case 'name':
+                        return a.name.localeCompare(b.name);
+                    case 'name-desc':
+                        return b.name.localeCompare(a.name);
+                    case 'year':
+                        return a.year - b.year;
+                    case 'year-desc':
+                        return b.year - a.year;
+                    case 'displacement':
+                        return a.specs.displacement - b.specs.displacement;
+                    case 'displacement-desc':
+                        return b.specs.displacement - a.specs.displacement;
+                    default:
+                        return 0;
+                }
+            });
         }
 
         bindEvents() {
@@ -400,6 +422,15 @@
                     });
                 }
             });
+
+            // Sort control
+            const sortSelect = document.getElementById('sortSelect');
+            if (sortSelect) {
+                sortSelect.addEventListener('change', (e) => {
+                    this.sortBy = e.target.value;
+                    this.applyFilters();
+                });
+            }
 
             // Clear filters
             document.getElementById('clearFilters').addEventListener('click', () => {
@@ -478,6 +509,8 @@
                 crew: 'all',
                 speed: 'all'
             };
+            
+            this.sortBy = 'name'; // ← ДОБАВЛЯЕМ СБРОС СОРТИРОВКИ
 
             document.getElementById('searchFilter').value = '';
             document.querySelectorAll('.filter-chip').forEach(chip => {
@@ -489,6 +522,10 @@
                 const element = document.getElementById(filter + 'Filter');
                 if (element) element.value = 'all';
             });
+            
+            // Сбрасываем селект сортировки
+            const sortSelect = document.getElementById('sortSelect');
+            if (sortSelect) sortSelect.value = 'name';
 
             this.applyFilters();
         }
@@ -592,7 +629,6 @@
             document.getElementById('quickViewModal').classList.remove('active');
         }
 
-        // Обновленный matchesFilters
         matchesFilters(vehicle) {
             // Search filter
             if (this.filters.search && !vehicle.name.toLowerCase().includes(this.filters.search.toLowerCase())) {
