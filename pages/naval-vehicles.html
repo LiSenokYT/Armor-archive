@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Морская техника | Архив Брони</title>
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/catalog.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,22 +16,376 @@
                     <span class="logo-icon">🛡️</span>
                     <span class="logo-text">АРХИВ БРОНИ</span>
                 </div>
+                
                 <ul class="nav-links">
                     <li><a href="../index.html" class="nav-link">Главная</a></li>
                     <li><a href="ground-vehicles.html" class="nav-link">Наземная</a></li>
                     <li><a href="air-vehicles.html" class="nav-link">Воздушная</a></li>
                     <li><a href="naval-vehicles.html" class="nav-link active">Морская</a></li>
                 </ul>
+                
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Поиск техники..." class="search-input">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                    <button class="mobile-menu-btn">☰</button>
+                </div>
             </div>
         </nav>
     </header>
 
     <section class="page-header">
         <div class="container">
-            <h1 class="page-title">Морская техника</h1>
-            <p class="page-subtitle">Страница в разработке</p>
-            <a href="ground-vehicles.html" class="cta-button primary">Перейти к наземной технике</a>
+            <div class="breadcrumbs">
+                <a href="../index.html">Главная</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="current">Морская техника</span>
+            </div>
+            
+            <div class="page-header-content">
+                <h1 class="page-title">Морская техника</h1>
+                <p class="page-subtitle">Авианосцы, крейсеры, подводные лодки и другие корабли военно-морского флота</p>
+                
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">единиц техники</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">стран</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">категорий</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-header">
+                <h2>
+                    <span>⛴️</span>
+                    Фильтры морской техники
+                </h2>
+                <div class="filters-actions">
+                    <button class="filters-toggle" id="filtersToggle">
+                        <span>Показать фильтры</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                    <button class="clear-filters" id="clearFilters">Сбросить все</button>
+                </div>
+            </div>
+            
+            <div class="filters-container" id="filtersContainer">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">Поиск по названию</label>
+                        <div class="search-filter">
+                            <input type="text" id="searchFilter" placeholder="Например: Кузнецов, Yamato...">
+                            <button class="search-filter-btn">🔍</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Тип корабля</label>
+                        <div class="filter-chips" id="typeFilter">
+                            <button class="filter-chip active" data-type="all">Все</button>
+                            <button class="filter-chip" data-type="aircraft-carrier">Авианосец</button>
+                            <button class="filter-chip" data-type="cruiser">Крейсер</button>
+                            <button class="filter-chip" data-type="destroyer">Эсминец</button>
+                            <button class="filter-chip" data-type="frigate">Фрегат</button>
+                            <button class="filter-chip" data-type="corvette">Корвет</button>
+                            <button class="filter-chip" data-type="submarine">Подлодка</button>
+                            <button class="filter-chip" data-type="landing-ship">Десантный корабль</button>
+                            <button class="filter-chip" data-type="patrol-ship">Сторожевой корабль</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Страна</label>
+                        <select class="filter-select" id="countryFilter">
+                            <option value="all">Все страны</option>
+                            <option value="russia">Россия/СССР</option>
+                            <option value="usa">США</option>
+                            <option value="uk">Великобритания</option>
+                            <option value="france">Франция</option>
+                            <option value="china">Китай</option>
+                            <option value="japan">Япония</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Период</label>
+                        <select class="filter-select" id="eraFilter">
+                            <option value="all">Все периоды</option>
+                            <option value="ww2">Вторая мировая</option>
+                            <option value="cold-war">Холодная война</option>
+                            <option value="modern">Современность</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Годы службы</label>
+                        <div class="range-filter">
+                            <div class="range-inputs">
+                                <input type="number" id="yearFrom" placeholder="1940" min="1900" max="2030">
+                                <span class="range-separator">—</span>
+                                <input type="number" id="yearTo" placeholder="2024" min="1900" max="2030">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <button class="advanced-filters-toggle" id="advancedToggle">
+                            <span>Расширенные фильтры</span>
+                            <span class="toggle-icon">▼</span>
+                        </button>
+                    </div>
+
+                    <div class="advanced-filters" id="advancedFilters">
+                        <div class="filter-group">
+                            <label class="filter-label">Водоизмещение</label>
+                            <select class="filter-select" id="displacementFilter">
+                                <option value="all">Любое</option>
+                                <option value="small">Малые (до 5,000 т)</option>
+                                <option value="medium">Средние (5,000-15,000 т)</option>
+                                <option value="large">Крупные (15,000-50,000 т)</option>
+                                <option value="super-large">Очень крупные (50,000+ т)</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Экипаж</label>
+                            <select class="filter-select" id="crewFilter">
+                                <option value="all">Любой</option>
+                                <option value="small">Малый (до 100 чел)</option>
+                                <option value="medium">Средний (100-500 чел)</option>
+                                <option value="large">Крупный (500+ чел)</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Скорость</label>
+                            <select class="filter-select" id="speedFilter">
+                                <option value="all">Любая</option>
+                                <option value="slow">Малая (до 25 узлов)</option>
+                                <option value="medium">Средняя (25-35 узлов)</option>
+                                <option value="fast">Высокая (35+ узлов)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="active-filters" id="activeFilters">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results-section">
+        <div class="container">
+            <div class="results-header">
+                <div class="results-info">
+                    <h3>Найдено единиц: <span id="resultsCount">15</span></h3>
+                    <div class="sort-controls">
+                        <label>Сортировка:</label>
+                        <select id="sortSelect">
+                            <option value="name">По названию (А-Я)</option>
+                            <option value="name-desc">По названию (Я-А)</option>
+                            <option value="year">По году (старые)</option>
+                            <option value="year-desc">По году (новые)</option>
+                            <option value="displacement">По водоизм. (малые)</option>
+                            <option value="displacement-desc">По водоизм. (крупные)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="view-controls">
+                    <button class="view-btn active" data-view="grid" title="Сетка">
+                        ▦
+                    </button>
+                    <button class="view-btn" data-view="list" title="Список">
+                        ☰
+                    </button>
+                </div>
+            </div>
+
+            <div class="vehicles-grid" id="vehiclesGrid">
+                <!-- Морская техника будет здесь -->
+            </div>
+
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Загрузка морской техники...</p>
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">⛴️</div>
+                <h3>Корабли не найдены</h3>
+                <p>Попробуйте изменить параметры фильтрации</p>
+                <button class="cta-button primary" id="resetSearch">Сбросить фильтры</button>
+            </div>
+
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMore">Загрузить ещё</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-body" id="modalBody">
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <span class="logo-icon">🛡️</span>
+                        <span class="logo-text">АРХИВ БРОНИ</span>
+                    </div>
+                    <p class="footer-description">
+                        Энциклопедия военной техники от древности до наших дней. 
+                        История, характеристики и технические details.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Разделы</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Главная</a></li>
+                        <li><a href="ground-vehicles.html">Наземная</a></li>
+                        <li><a href="air-vehicles.html">Воздушная</a></li>
+                        <li><a href="naval-vehicles.html">Морская</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Категории</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Авианосцы</a></li>
+                        <li><a href="#">Крейсеры</a></li>
+                        <li><a href="#">Подлодки</a></li>
+                        <li><a href="#">Эсминцы</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">Telegram</a>
+                        <a href="#" class="social-link">Email</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Архив Брони. Фанатский проект. Не преследует политических целей.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключаем загрузчик данных -->
+    <script src="../src/data/data-loader.js"></script>
+    
+    <script>
+    // NavalCatalog класс для морской техники
+    class NavalCatalog {
+        constructor() {
+            this.vehicles = [];
+            this.filteredVehicles = [];
+            this.currentPage = 1;
+            this.itemsPerPage = 12;
+            this.filters = {
+                search: '',
+                type: 'all',
+                country: 'all',
+                era: 'all',
+                yearFrom: '',
+                yearTo: '',
+                displacement: 'all',
+                crew: 'all',
+                speed: 'all'
+            };
+            this.sortBy = 'name';
+            this.viewMode = 'grid';
+            this.filtersVisible = false;
+            
+            this.init();
+        }
+
+        async init() {
+            await this.loadVehicles();
+            this.bindEvents();
+            this.applyFilters();
+            this.toggleFilters(false);
+        }
+
+        async loadVehicles() {
+            try {
+                const loader = window.dataLoader;
+                this.vehicles = await loader.loadVehicles('naval');
+                console.log('📦 Загружено морской техники:', this.vehicles.length, 'единиц');
+                this.displayVehicles();
+            } catch (error) {
+                console.error('Ошибка загрузки морской техники:', error);
+                // Пока пустой fallback - добавим данные позже
+                this.vehicles = [];
+                this.displayVehicles();
+            }
+        }
+
+        // Остальные методы добавим после создания JSON данных
+        bindEvents() {
+            console.log('Методы фильтрации будут добавлены после создания данных');
+        }
+
+        applyFilters() {
+            this.displayVehicles();
+        }
+
+        displayVehicles() {
+            const grid = document.getElementById('vehiclesGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            const noResults = document.getElementById('noResults');
+            const loadingState = document.getElementById('loadingState');
+
+            if (loadingState) loadingState.style.display = 'none';
+
+            if (this.vehicles.length === 0) {
+                grid.style.display = 'none';
+                if (noResults) noResults.style.display = 'block';
+                if (resultsCount) resultsCount.textContent = '0';
+                return;
+            }
+
+            // Временное отображение - позже заменим на createVehicleCard()
+            grid.innerHTML = `
+                <div class="vehicle-card">
+                    <div class="vehicle-content" style="text-align: center; padding: 3rem;">
+                        <h3>Морская техника в разработке ⛴️</h3>
+                        <p>Данные будут добавлены в ближайшее время</p>
+                        <p>Сейчас загружено: ${this.vehicles.length} единиц</p>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    // Инициализация каталога
+    document.addEventListener('DOMContentLoaded', () => {
+        window.catalog = new NavalCatalog();
+    });
+    </script>
 </body>
 </html>
