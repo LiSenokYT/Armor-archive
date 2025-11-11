@@ -1,0 +1,68 @@
+{
+  "vehicles": [
+    {
+      "id": "su-57",
+      "name": "Су-57",
+      "category": "fighter",
+      "country": "russia", 
+      "era": "modern",
+      "year": 2020,
+      "specs": {
+        "speed": 2600,
+        "range": 5500,
+        "ceiling": 20,
+        "engines": 2,
+        "crew": 1,
+        "length": "19.8 м",
+        "wingspan": "14 м", 
+        "weight": "18500 кг",
+        "armament": "Р-77, Р-73, 30-мм пушка"
+      },
+      "description": "Российский многофункциональный истребитель пятого поколения с технологией стелс.",
+      "image": ""
+    },
+    {
+      "id": "mig-31",
+      "name": "МиГ-31",
+      "category": "interceptor",
+      "country": "russia",
+      "era": "cold-war", 
+      "year": 1981,
+      "specs": {
+        "speed": 3000,
+        "range": 3300,
+        "ceiling": 20.6,
+        "engines": 2,
+        "crew": 2,
+        "length": "22.7 м",
+        "wingspan": "13.5 м",
+        "weight": "21820 кг", 
+        "armament": "Р-33, Р-37, Р-77, 23-мм пушка"
+      },
+      "description": "Сверхзвуковой истребитель-перехватчик дальнего радиуса действия.",
+      "image": ""
+    },
+    {
+      "id": "su-35s",
+      "name": "Су-35С",
+      "category": "multirole", 
+      "country": "russia",
+      "era": "modern",
+      "year": 2014,
+      "specs": {
+        "speed": 2500,
+        "range": 3600,
+        "ceiling": 18,
+        "engines": 2,
+        "crew": 1,
+        "length": "21.9 м",
+        "wingspan": "15.3 м",
+        "weight": "18400 кг",
+        "armament": "Р-77, Р-73, Р-27, 30-мм пушка"
+      },
+      "description": "Многофункциональный сверхманёвренный истребитель поколения 4++.",
+      "image": ""
+    }
+    // ДОБАВЬ ОСТАЛЬНЫЕ 23 ЕДИНИЦЫ по аналогии!
+  ]
+}
