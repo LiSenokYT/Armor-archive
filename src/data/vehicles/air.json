@@ -4,8 +4,8 @@
       "id": "su-57",
       "name": "Су-57",
       "category": "fighter",
-      "country": "russia", 
-      "era": "modern",
+      "country": "russia",
+      "era": "modern", 
       "year": 2020,
       "specs": {
         "speed": 2600,
@@ -14,7 +14,7 @@
         "engines": 2,
         "crew": 1,
         "length": "19.8 м",
-        "wingspan": "14 м", 
+        "wingspan": "14 м",
         "weight": "18500 кг",
         "armament": "Р-77, Р-73, 30-мм пушка"
       },
@@ -22,11 +22,11 @@
       "image": ""
     },
     {
-      "id": "mig-31",
+      "id": "mig-31", 
       "name": "МиГ-31",
       "category": "interceptor",
       "country": "russia",
-      "era": "cold-war", 
+      "era": "cold-war",
       "year": 1981,
       "specs": {
         "speed": 3000,
@@ -35,8 +35,8 @@
         "engines": 2,
         "crew": 2,
         "length": "22.7 м",
-        "wingspan": "13.5 м",
-        "weight": "21820 кг", 
+        "wingspan": "13.5 м", 
+        "weight": "21820 кг",
         "armament": "Р-33, Р-37, Р-77, 23-мм пушка"
       },
       "description": "Сверхзвуковой истребитель-перехватчик дальнего радиуса действия.",
@@ -44,8 +44,8 @@
     },
     {
       "id": "su-35s",
-      "name": "Су-35С",
-      "category": "multirole", 
+      "name": "Су-35С", 
+      "category": "multirole",
       "country": "russia",
       "era": "modern",
       "year": 2014,
@@ -63,6 +63,5 @@
       "description": "Многофункциональный сверхманёвренный истребитель поколения 4++.",
       "image": ""
     }
-    // ДОБАВЬ ОСТАЛЬНЫЕ 23 ЕДИНИЦЫ по аналогии!
   ]
 }
