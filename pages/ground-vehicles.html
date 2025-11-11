@@ -323,12 +323,17 @@
         </div>
     </footer>
 
+    <!-- Подключаем наш загрузчик данных -->
+    <script src="/src/data/data-loader.js"></script>
+    
     <script>
 // Vehicle Catalog with ALL filters and CORRECT links - FIXED VERSION
 class VehicleCatalog {
     constructor() {
         this.vehicles = [];
         this.filteredVehicles = [];
+        this.currentPage = 1;
+        this.itemsPerPage = 12;
         this.filters = {
             search: '',
             type: 'all',
@@ -347,14 +352,31 @@ class VehicleCatalog {
         this.init();
     }
 
-    init() {
-        this.loadVehicles();
+    async init() {
+        await this.loadVehicles(); // Делаем асинхронным
         this.bindEvents();
         this.applyFilters();
         this.toggleFilters(false);
     }
 
-    loadVehicles() {
+    // ЗАМЕНЯЕМ старый метод загрузки на новый
+    async loadVehicles() {
+        try {
+            const loader = window.dataLoader;
+            this.vehicles = await loader.loadVehicles('ground');
+            
+            console.log('📦 Загружено из JSON:', this.vehicles.length, 'единиц');
+            
+            this.displayVehicles();
+        } catch (error) {
+            console.error('Ошибка загрузки данных:', error);
+            this.loadVehiclesFallback();
+        }
+    }
+
+    // Fallback метод на случай проблем
+    loadVehiclesFallback() {
+        console.log('Используем fallback данные...');
         this.vehicles = [
             {
                 id: 1,
@@ -501,7 +523,6 @@ class VehicleCatalog {
                 }
             }
         ];
-
         this.displayVehicles();
     }
 
@@ -592,6 +613,32 @@ class VehicleCatalog {
                 this.clearFilters();
             });
         }
+
+        // Load more
+        const loadMore = document.getElementById('loadMore');
+        if (loadMore) {
+            loadMore.addEventListener('click', () => {
+                this.loadMore();
+            });
+        }
+
+        // Quick view modal
+        const modalClose = document.getElementById('modalClose');
+        if (modalClose) {
+            modalClose.addEventListener('click', () => {
+                this.closeModal();
+            });
+        }
+
+        // Close modal on backdrop click
+        const modal = document.getElementById('quickViewModal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target.id === 'quickViewModal') {
+                    this.closeModal();
+                }
+            });
+        }
     }
 
     toggleFilters(show) {
@@ -611,6 +658,7 @@ class VehicleCatalog {
     }
 
     applyFilters() {
+        this.currentPage = 1;
         this.filteredVehicles = this.vehicles.filter(vehicle => {
             return this.matchesFilters(vehicle);
         });
@@ -884,6 +932,15 @@ class VehicleCatalog {
         }
     }
 
+    loadMore() {
+        this.currentPage++;
+        this.displayVehicles();
+    }
+
+    closeModal() {
+        document.getElementById('quickViewModal').classList.remove('active');
+    }
+
     // Helper methods
     getTypeLabel(type) {
         const types = {
@@ -961,20 +1018,6 @@ class VehicleCatalog {
 // Initialize catalog when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.catalog = new VehicleCatalog();
-});
-</script>
-
-    <script src="/src/data/data-loader.js"></script>
-<script>
-// Тестовый код - потом уберём
-document.addEventListener('DOMContentLoaded', async () => {
-  const loader = window.dataLoader;
-  const vehicles = await loader.loadVehicles('ground');
-  const categories = await loader.loadCategories('ground');
-  
-  console.log('✅ Загружено техники:', vehicles.length);
-  console.log('✅ Загружено категорий:', categories.length);
-  console.log('✅ Первая техника:', vehicles[0]);
 });
 </script>
 </body>
