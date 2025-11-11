@@ -368,23 +368,6 @@
             this.displayVehicles();
         }
 
-        matchesFilters(vehicle) {
-            // Пока простейшая фильтрация - позже доработаем
-            if (this.filters.search && !vehicle.name.toLowerCase().includes(this.filters.search.toLowerCase())) {
-                return false;
-            }
-            if (this.filters.type !== 'all' && vehicle.category !== this.filters.type) {
-                return false;
-            }
-            if (this.filters.country !== 'all' && vehicle.country !== this.filters.country) {
-                return false;
-            }
-            if (this.filters.era !== 'all' && vehicle.era !== this.filters.era) {
-                return false;
-            }
-            return true;
-        }
-
         bindEvents() {
             // Toggle filters
             document.getElementById('filtersToggle').addEventListener('click', () => {
@@ -422,6 +405,65 @@
             document.getElementById('clearFilters').addEventListener('click', () => {
                 this.clearFilters();
             });
+
+            // Advanced filters toggle
+            const advancedToggle = document.getElementById('advancedToggle');
+            if (advancedToggle) {
+                advancedToggle.addEventListener('click', (e) => {
+                    e.target.classList.toggle('active');
+                    document.getElementById('advancedFilters').classList.toggle('active');
+                });
+            }
+
+            // Advanced filters
+            ['displacement', 'crew', 'speed'].forEach(filter => {
+                const element = document.getElementById(filter + 'Filter');
+                if (element) {
+                    element.addEventListener('change', (e) => {
+                        this.filters[filter] = e.target.value;
+                        this.applyFilters();
+                    });
+                }
+            });
+
+            // Year range filters
+            ['yearFrom', 'yearTo'].forEach(filter => {
+                const element = document.getElementById(filter);
+                if (element) {
+                    element.addEventListener('input', (e) => {
+                        this.filters[filter] = e.target.value;
+                        this.applyFilters();
+                    });
+                }
+            });
+
+            // View controls
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    this.viewMode = e.target.dataset.view;
+                    this.updateViewMode();
+                });
+            });
+
+            // Modal close
+            const modalClose = document.getElementById('modalClose');
+            if (modalClose) {
+                modalClose.addEventListener('click', () => {
+                    this.closeModal();
+                });
+            }
+
+            // Close modal on backdrop click
+            const modal = document.getElementById('quickViewModal');
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target.id === 'quickViewModal') {
+                        this.closeModal();
+                    }
+                });
+            }
         }
 
         clearFilters() {
@@ -449,6 +491,176 @@
             });
 
             this.applyFilters();
+        }
+
+        // Quick View функциональность
+        bindVehicleCardEvents() {
+            document.querySelectorAll('.quick-view-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const vehicleId = e.target.dataset.vehicleId;
+                    this.showQuickView(vehicleId);
+                });
+            });
+
+            document.querySelectorAll('.vehicle-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('vehicle-btn')) {
+                        const vehicleId = card.dataset.vehicleId;
+                        // Позже сделаем навигацию на детальную страницу
+                        console.log('Переход к детальной странице:', vehicleId);
+                    }
+                });
+            });
+        }
+
+        showQuickView(vehicleId) {
+            const vehicle = this.vehicles.find(v => v.id === vehicleId);
+            if (!vehicle) return;
+
+            const modalBody = document.getElementById('modalBody');
+            if (!modalBody) return;
+
+            modalBody.innerHTML = this.createQuickViewContent(vehicle);
+            document.getElementById('quickViewModal').classList.add('active');
+        }
+
+        createQuickViewContent(vehicle) {
+            const typeLabel = this.getTypeLabel(vehicle.category);
+            const countryLabel = this.getCountryLabel(vehicle.country);
+
+            return `
+                <div class="quick-view">
+                    <div class="quick-view-image">
+                        <div class="vehicle-image-placeholder large">
+                            ${vehicle.name}
+                        </div>
+                    </div>
+                    <div class="quick-view-content">
+                        <h2>${vehicle.name}</h2>
+                        <div class="quick-view-meta">
+                            <span class="meta-item">${countryLabel}</span>
+                            <span class="meta-item">${vehicle.year} год</span>
+                            <span class="meta-item">${typeLabel}</span>
+                        </div>
+                        
+                        <div class="quick-view-specs">
+                            <div class="spec-row">
+                                <span class="spec-name">Водоизмещение:</span>
+                                <span class="spec-value">${vehicle.specs.displacement} тонн</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-name">Длина:</span>
+                                <span class="spec-value">${vehicle.specs.length} метров</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-name">Экипаж:</span>
+                                <span class="spec-value">${vehicle.specs.crew} человек</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-name">Макс. скорость:</span>
+                                <span class="spec-value">${vehicle.specs.speed} узлов</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-name">Вооружение:</span>
+                                <span class="spec-value">${vehicle.specs.armament}</span>
+                            </div>
+                            ${vehicle.specs.aircraft ? `
+                            <div class="spec-row">
+                                <span class="spec-name">Авиагруппа:</span>
+                                <span class="spec-value">${vehicle.specs.aircraft}</span>
+                            </div>
+                            ` : ''}
+                        </div>
+                        
+                        <p class="quick-view-description">${vehicle.description}</p>
+                        
+                        <div class="quick-view-actions">
+                            <a href="naval-details.html?id=${vehicle.id}" class="vehicle-btn">
+                                Полное описание
+                            </a>
+                            <button class="vehicle-btn secondary" onclick="catalog.closeModal()">
+                                Закрыть
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        closeModal() {
+            document.getElementById('quickViewModal').classList.remove('active');
+        }
+
+        // Обновленный matchesFilters
+        matchesFilters(vehicle) {
+            // Search filter
+            if (this.filters.search && !vehicle.name.toLowerCase().includes(this.filters.search.toLowerCase())) {
+                return false;
+            }
+
+            // Type filter
+            if (this.filters.type !== 'all' && vehicle.category !== this.filters.type) {
+                return false;
+            }
+
+            // Country filter
+            if (this.filters.country !== 'all' && vehicle.country !== this.filters.country) {
+                return false;
+            }
+
+            // Era filter
+            if (this.filters.era !== 'all' && vehicle.era !== this.filters.era) {
+                return false;
+            }
+
+            // Year range filter
+            if (this.filters.yearFrom && vehicle.year < parseInt(this.filters.yearFrom)) {
+                return false;
+            }
+            if (this.filters.yearTo && vehicle.year > parseInt(this.filters.yearTo)) {
+                return false;
+            }
+
+            // Displacement filter
+            if (this.filters.displacement !== 'all') {
+                const displacement = vehicle.specs.displacement;
+                switch (this.filters.displacement) {
+                    case 'small': if (displacement > 5000) return false; break;
+                    case 'medium': if (displacement <= 5000 || displacement > 15000) return false; break;
+                    case 'large': if (displacement <= 15000 || displacement > 50000) return false; break;
+                    case 'super-large': if (displacement <= 50000) return false; break;
+                }
+            }
+
+            // Crew filter
+            if (this.filters.crew !== 'all') {
+                const crew = vehicle.specs.crew;
+                switch (this.filters.crew) {
+                    case 'small': if (crew > 100) return false; break;
+                    case 'medium': if (crew <= 100 || crew > 500) return false; break;
+                    case 'large': if (crew <= 500) return false; break;
+                }
+            }
+
+            // Speed filter
+            if (this.filters.speed !== 'all') {
+                const speed = vehicle.specs.speed;
+                switch (this.filters.speed) {
+                    case 'slow': if (speed > 25) return false; break;
+                    case 'medium': if (speed <= 25 || speed > 35) return false; break;
+                    case 'fast': if (speed <= 35) return false; break;
+                }
+            }
+
+            return true;
+        }
+
+        updateViewMode() {
+            const grid = document.getElementById('vehiclesGrid');
+            if (grid) {
+                grid.className = `vehicles-grid ${this.viewMode}-view`;
+            }
         }
 
         createVehicleCard(vehicle) {
@@ -524,6 +736,9 @@
             if (resultsCount) resultsCount.textContent = this.filteredVehicles.length;
 
             grid.innerHTML = this.filteredVehicles.map(vehicle => this.createVehicleCard(vehicle)).join('');
+            
+            // Привязываем события к новым карточкам
+            this.bindVehicleCardEvents();
         }
 
         // Helper methods
