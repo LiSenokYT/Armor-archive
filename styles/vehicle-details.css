@@ -1985,3 +1985,278 @@
         padding: 1rem;
     }
 }
+
+/* Weapons Suspension System Styles */
+.suspension-system {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.suspension-diagram {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    min-height: 400px;
+}
+
+.aircraft-silhouette {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    border-radius: var(--border-radius);
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aircraft-silhouette::before {
+    content: '✈️';
+    font-size: 4rem;
+    opacity: 0.3;
+}
+
+.pylon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.pylon:hover {
+    transform: scale(1.2);
+    background: #b02e38;
+    border-color: white;
+}
+
+.pylon-number {
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.pylon-info {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.pylon:hover .pylon-info {
+    opacity: 1;
+}
+
+/* Pylon positions for Su-34 */
+.pylon-1 { top: 20%; left: 10%; }
+.pylon-2 { top: 20%; left: 20%; }
+.pylon-3 { top: 40%; left: 30%; }
+.pylon-4 { top: 40%; left: 40%; }
+.pylon-5 { top: 40%; left: 50%; }
+.pylon-6 { top: 40%; left: 60%; }
+.pylon-7 { top: 40%; left: 70%; }
+.pylon-8 { top: 40%; left: 80%; }
+.pylon-9 { top: 20%; left: 90%; }
+.pylon-10 { top: 20%; left: 80%; }
+.pylon-11 { top: 20%; left: 70%; }
+.pylon-12 { top: 60%; left: 50%; }
+
+.weapons-selector {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.weapons-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.weapon-tab {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.8rem;
+}
+
+.weapon-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+}
+
+.weapon-tab.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: white;
+}
+
+.weapons-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.weapon-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.weapon-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+}
+
+.weapon-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.weapon-info {
+    flex: 1;
+}
+
+.weapon-info h4 {
+    margin: 0 0 0.25rem 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.weapon-info p {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.weapon-specs {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.weapon-compatibility {
+    font-size: 0.7rem;
+    color: var(--accent-primary);
+    text-align: right;
+}
+
+.loadout-examples {
+    margin-top: 2rem;
+}
+
+.loadout-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.loadout-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+}
+
+.loadout-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.loadout-card h4 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.loadout-weapons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.loadout-weapons span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.loadout-total {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.loadout-total strong {
+    color: var(--accent-primary);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .suspension-system {
+        grid-template-columns: 1fr;
+    }
+    
+    .aircraft-silhouette {
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .weapons-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .weapon-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .weapon-compatibility {
+        text-align: center;
+    }
+    
+    .loadout-cards {
+        grid-template-columns: 1fr;
+    }
+}
