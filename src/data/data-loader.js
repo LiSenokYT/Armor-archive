@@ -1,9 +1,60 @@
 class DataLoader {
   constructor() {
     this.basePath = '/src/data';
+    this.initSupabase();
+  }
+
+  initSupabase() {
+    // Конфигурация Supabase
+    const SUPABASE_URL = "https://tluqrkebiubwzweeytfl.supabase.co";
+    const SUPABASE_ANON_KEY = "REPLACE_WITH_ANON_KEY"; // <- Вставь сюда anon key
+
+    this.useSupabase = !!(SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== "REPLACE_WITH_ANON_KEY");
+    this.supabaseClient = null;
+
+    if (this.useSupabase) {
+      try { 
+        this.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); 
+      } catch(e) { 
+        console.warn('Supabase init failed', e); 
+        this.useSupabase = false;
+      }
+    }
+  }
+
+  async loadVehiclesFromSupabase(category) {
+    if (!this.useSupabase || !this.supabaseClient) return null;
+    try {
+      let q = this.supabaseClient.from('vehicles').select('*').order('created_at', { ascending: false });
+      if (category) q = q.eq('category', category);
+      const { data, error } = await q;
+      if (error) { 
+        console.error('Supabase error', error); 
+        return null; 
+      }
+      return data || [];
+    } catch(e) { 
+      console.error(e); 
+      return null; 
+    }
+  }
+
+  async loadLocalJson(path) {
+    try { 
+      const res = await fetch(path); 
+      return await res.json(); 
+    } catch(e) { 
+      console.error('local load failed', path, e); 
+      return []; 
+    }
   }
 
   async loadVehicles(type) {
+    // Сначала пытаемся загрузить из Supabase
+    const supaData = await this.loadVehiclesFromSupabase(type);
+    if (supaData && supaData.length) return supaData;
+
+    // Фоллбек — локальный JSON
     try {
       const response = await fetch(`${this.basePath}/vehicles/${type}.json`);
       if (!response.ok) throw new Error(`Failed to load ${type} vehicles`);
@@ -28,7 +79,24 @@ class DataLoader {
   }
 
   async loadVehicleById(id) {
-    // Будем искать по всем типам техники
+    // Сначала ищем в Supabase
+    if (this.useSupabase && this.supabaseClient) {
+      try {
+        const { data, error } = await this.supabaseClient
+          .from('vehicles')
+          .select('*')
+          .eq('id', id)
+          .single();
+
+        if (!error && data) {
+          return data;
+        }
+      } catch (e) {
+        console.warn('Supabase search failed, falling back to local', e);
+      }
+    }
+
+    // Фоллбек — поиск по локальным файлам
     const types = ['ground', 'air', 'naval'];
     
     for (let type of types) {
