@@ -836,3 +836,46 @@
         margin: 1rem;
     }
 }
+
+/* Enhanced styles for aircraft catalog */
+.generation-badge {
+    background: var(--accent-secondary);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 500;
+}
+
+.vehicle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.4rem;
+}
+
+/* Aircraft-specific improvements */
+.vehicle-specs {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Enhanced filter styles for aircraft */
+.filter-chips {
+    max-height: 120px;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .vehicle-specs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .vehicle-header {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+    
+    .generation-badge {
+        align-self: flex-start;
+    }
+}
