@@ -544,8 +544,8 @@
                 card.addEventListener('click', (e) => {
                     if (!e.target.classList.contains('vehicle-btn')) {
                         const vehicleId = card.dataset.vehicleId;
-                        // Позже сделаем навигацию на детальную страницу
-                        console.log('Переход к детальной странице:', vehicleId);
+                        // ПЕРЕХОДИМ НА ДЕТАЛЬНУЮ СТРАНИЦУ
+                        window.location.href = `naval-details.html?id=${vehicleId}`;
                     }
                 });
             });
