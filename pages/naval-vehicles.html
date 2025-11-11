@@ -339,19 +339,169 @@
                 this.displayVehicles();
             } catch (error) {
                 console.error('Ошибка загрузки морской техники:', error);
-                // Пока пустой fallback - добавим данные позже
                 this.vehicles = [];
                 this.displayVehicles();
             }
         }
 
-        // Остальные методы добавим после создания JSON данных
-        bindEvents() {
-            console.log('Методы фильтрации будут добавлены после создания данных');
+        // Добавляем недостающие методы
+        toggleFilters(show) {
+            this.filtersVisible = show !== undefined ? show : !this.filtersVisible;
+            const container = document.querySelector('.filters-container');
+            const toggle = document.getElementById('filtersToggle');
+            
+            if (this.filtersVisible) {
+                container.classList.add('active');
+                toggle.classList.add('active');
+                toggle.innerHTML = '<span>Скрыть фильтры</span><span class="toggle-icon">▼</span>';
+            } else {
+                container.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.innerHTML = '<span>Показать фильтры</span><span class="toggle-icon">▼</span>';
+            }
         }
 
         applyFilters() {
+            this.filteredVehicles = this.vehicles.filter(vehicle => {
+                return this.matchesFilters(vehicle);
+            });
             this.displayVehicles();
+        }
+
+        matchesFilters(vehicle) {
+            // Пока простейшая фильтрация - позже доработаем
+            if (this.filters.search && !vehicle.name.toLowerCase().includes(this.filters.search.toLowerCase())) {
+                return false;
+            }
+            if (this.filters.type !== 'all' && vehicle.category !== this.filters.type) {
+                return false;
+            }
+            if (this.filters.country !== 'all' && vehicle.country !== this.filters.country) {
+                return false;
+            }
+            if (this.filters.era !== 'all' && vehicle.era !== this.filters.era) {
+                return false;
+            }
+            return true;
+        }
+
+        bindEvents() {
+            // Toggle filters
+            document.getElementById('filtersToggle').addEventListener('click', () => {
+                this.toggleFilters();
+            });
+
+            // Search filter
+            document.getElementById('searchFilter').addEventListener('input', (e) => {
+                this.filters.search = e.target.value;
+                this.applyFilters();
+            });
+
+            // Type filter chips
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    e.target.classList.add('active');
+                    this.filters.type = e.target.dataset.type;
+                    this.applyFilters();
+                });
+            });
+
+            // Select filters
+            ['country', 'era'].forEach(filter => {
+                const element = document.getElementById(filter + 'Filter');
+                if (element) {
+                    element.addEventListener('change', (e) => {
+                        this.filters[filter] = e.target.value;
+                        this.applyFilters();
+                    });
+                }
+            });
+
+            // Clear filters
+            document.getElementById('clearFilters').addEventListener('click', () => {
+                this.clearFilters();
+            });
+        }
+
+        clearFilters() {
+            this.filters = {
+                search: '',
+                type: 'all',
+                country: 'all',
+                era: 'all',
+                yearFrom: '',
+                yearTo: '',
+                displacement: 'all',
+                crew: 'all',
+                speed: 'all'
+            };
+
+            document.getElementById('searchFilter').value = '';
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active');
+                if (chip.dataset.type === 'all') chip.classList.add('active');
+            });
+            
+            ['country', 'era'].forEach(filter => {
+                const element = document.getElementById(filter + 'Filter');
+                if (element) element.value = 'all';
+            });
+
+            this.applyFilters();
+        }
+
+        createVehicleCard(vehicle) {
+            const typeLabel = this.getTypeLabel(vehicle.category);
+            const countryLabel = this.getCountryLabel(vehicle.country);
+
+            return `
+                <div class="vehicle-card" data-vehicle-id="${vehicle.id}">
+                    <div class="vehicle-badge">${countryLabel}</div>
+                    <div class="vehicle-image">
+                        <div class="vehicle-image-placeholder">
+                            ${vehicle.name}
+                        </div>
+                    </div>
+                    <div class="vehicle-content">
+                        <div class="vehicle-header">
+                            <h3 class="vehicle-title">${vehicle.name}</h3>
+                        </div>
+                        <div class="vehicle-country">${countryLabel} • ${vehicle.year}г</div>
+                        <div class="vehicle-type">${typeLabel}</div>
+                        
+                        <div class="vehicle-specs">
+                            <div class="vehicle-spec">
+                                <span class="spec-label">Водоизм.</span>
+                                <span class="spec-value">${vehicle.specs.displacement}т</span>
+                            </div>
+                            <div class="vehicle-spec">
+                                <span class="spec-label">Длина</span>
+                                <span class="spec-value">${vehicle.specs.length}м</span>
+                            </div>
+                            <div class="vehicle-spec">
+                                <span class="spec-label">Скорость</span>
+                                <span class="spec-value">${vehicle.specs.speed} узлов</span>
+                            </div>
+                            <div class="vehicle-spec">
+                                <span class="spec-label">Экипаж</span>
+                                <span class="spec-value">${vehicle.specs.crew}</span>
+                            </div>
+                        </div>
+                        
+                        <p class="vehicle-description">${vehicle.description}</p>
+                        
+                        <div class="vehicle-actions">
+                            <button class="vehicle-btn quick-view-btn" data-vehicle-id="${vehicle.id}">
+                                Быстрый просмотр
+                            </button>
+                            <a href="naval-details.html?id=${vehicle.id}" class="vehicle-btn secondary">
+                                Подробнее
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
         displayVehicles() {
@@ -362,23 +512,46 @@
 
             if (loadingState) loadingState.style.display = 'none';
 
-            if (this.vehicles.length === 0) {
+            if (this.filteredVehicles.length === 0) {
                 grid.style.display = 'none';
                 if (noResults) noResults.style.display = 'block';
                 if (resultsCount) resultsCount.textContent = '0';
                 return;
             }
 
-            // Временное отображение - позже заменим на createVehicleCard()
-            grid.innerHTML = `
-                <div class="vehicle-card">
-                    <div class="vehicle-content" style="text-align: center; padding: 3rem;">
-                        <h3>Морская техника в разработке ⛴️</h3>
-                        <p>Данные будут добавлены в ближайшее время</p>
-                        <p>Сейчас загружено: ${this.vehicles.length} единиц</p>
-                    </div>
-                </div>
-            `;
+            if (noResults) noResults.style.display = 'none';
+            grid.style.display = 'grid';
+            if (resultsCount) resultsCount.textContent = this.filteredVehicles.length;
+
+            grid.innerHTML = this.filteredVehicles.map(vehicle => this.createVehicleCard(vehicle)).join('');
+        }
+
+        // Helper methods
+        getTypeLabel(type) {
+            const types = {
+                'aircraft-carrier': 'Авианосец',
+                'battleship': 'Линкор',
+                'cruiser': 'Крейсер',
+                'destroyer': 'Эсминец',
+                'frigate': 'Фрегат',
+                'corvette': 'Корвет',
+                'submarine': 'Подлодка',
+                'landing-ship': 'Десантный корабль',
+                'patrol-ship': 'Сторожевой корабль'
+            };
+            return types[type] || type;
+        }
+
+        getCountryLabel(country) {
+            const countries = {
+                'russia': 'Россия/СССР',
+                'usa': 'США',
+                'china': 'Китай',
+                'japan': 'Япония',
+                'uk': 'Великобритания',
+                'france': 'Франция'
+            };
+            return countries[country] || country;
         }
     }
 
