@@ -963,5 +963,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.catalog = new VehicleCatalog();
 });
 </script>
+
+    <script src="/src/data/data-loader.js"></script>
+<script>
+// Тестовый код - потом уберём
+document.addEventListener('DOMContentLoaded', async () => {
+  const loader = window.dataLoader;
+  const vehicles = await loader.loadVehicles('ground');
+  const categories = await loader.loadCategories('ground');
+  
+  console.log('✅ Загружено техники:', vehicles.length);
+  console.log('✅ Загружено категорий:', categories.length);
+  console.log('✅ Первая техника:', vehicles[0]);
+});
+</script>
 </body>
 </html>
