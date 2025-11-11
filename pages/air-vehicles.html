@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
@@ -36,7 +35,6 @@
         </nav>
     </header>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <div class="breadcrumbs">
@@ -51,15 +49,15 @@
                 
                 <div class="quick-stats">
                     <div class="quick-stat">
-                        <span class="stat-number">45</span>
+                        <span class="stat-number">26</span>
                         <span class="stat-label">единиц техники</span>
                     </div>
                     <div class="quick-stat">
-                        <span class="stat-number">12</span>
+                        <span class="stat-number">11</span>
                         <span class="stat-label">стран</span>
                     </div>
                     <div class="quick-stat">
-                        <span class="stat-number">8</span>
+                        <span class="stat-number">15</span>
                         <span class="stat-label">категорий</span>
                     </div>
                 </div>
@@ -67,7 +65,6 @@
         </div>
     </section>
 
-    <!-- Enhanced Filters Section -->
     <section class="filters-section">
         <div class="container">
             <div class="filters-header">
@@ -86,7 +83,6 @@
             
             <div class="filters-container" id="filtersContainer">
                 <div class="filters-grid">
-                    <!-- Search Filter -->
                     <div class="filter-group">
                         <label class="filter-label">Поиск по названию</label>
                         <div class="search-filter">
@@ -95,22 +91,28 @@
                         </div>
                     </div>
 
-                    <!-- Aircraft Type Filter -->
                     <div class="filter-group">
                         <label class="filter-label">Тип самолёта</label>
                         <div class="filter-chips" id="typeFilter">
                             <button class="filter-chip active" data-type="all">Все</button>
                             <button class="filter-chip" data-type="fighter">Истребитель</button>
+                            <button class="filter-chip" data-type="interceptor">Истребитель-перехватчик</button>
+                            <button class="filter-chip" data-type="multirole">Многоцелевой истребитель</button>
                             <button class="filter-chip" data-type="bomber">Бомбардировщик</button>
+                            <button class="filter-chip" data-type="strategic-bomber">Стратегический бомбардировщик</button>
                             <button class="filter-chip" data-type="attack">Штурмовик</button>
+                            <button class="filter-chip" data-type="cas">Самолёт поддержки</button>
+                            <button class="filter-chip" data-type="recon">Самолёт-разведчик</button>
+                            <button class="filter-chip" data-type="awacs">Самолёт ДРЛО</button>
+                            <button class="filter-chip" data-type="tanker">Топливозаправщик</button>
                             <button class="filter-chip" data-type="transport">Транспортный</button>
                             <button class="filter-chip" data-type="trainer">Учебный</button>
+                            <button class="filter-chip" data-type="attack-helicopter">Ударный вертолёт</button>
+                            <button class="filter-chip" data-type="transport-helicopter">Транспортный вертолёт</button>
                             <button class="filter-chip" data-type="special">Специальный</button>
-                            <button class="filter-chip" data-type="helicopter">Вертолёт</button>
                         </div>
                     </div>
 
-                    <!-- Generation Filter -->
                     <div class="filter-group">
                         <label class="filter-label">Поколение</label>
                         <select class="filter-select" id="generationFilter">
@@ -123,20 +125,24 @@
                         </select>
                     </div>
 
-                    <!-- Country Filter -->
                     <div class="filter-group">
                         <label class="filter-label">Страна</label>
                         <select class="filter-select" id="countryFilter">
                             <option value="all">Все страны</option>
-                            <option value="russia">Россия</option>
+                            <option value="russia">Россия/СССР</option>
                             <option value="usa">США</option>
                             <option value="china">Китай</option>
-                            <option value="europe">Европа</option>
+                            <option value="germany">Германия</option>
+                            <option value="uk">Великобритания</option>
+                            <option value="france">Франция</option>
+                            <option value="japan">Япония</option>
+                            <option value="israel">Израиль</option>
+                            <option value="sweden">Швеция</option>
+                            <option value="europe">Европа (совместные)</option>
                             <option value="other">Другие</option>
                         </select>
                     </div>
 
-                    <!-- Era Filter -->
                     <div class="filter-group">
                         <label class="filter-label">Период</label>
                         <select class="filter-select" id="eraFilter">
@@ -147,19 +153,17 @@
                         </select>
                     </div>
 
-                    <!-- Year Range -->
                     <div class="filter-group">
                         <label class="filter-label">Годы службы</label>
                         <div class="range-filter">
                             <div class="range-inputs">
-                                <input type="number" id="yearFrom" placeholder="1960" min="1950" max="2030">
+                                <input type="number" id="yearFrom" placeholder="1950" min="1950" max="2030">
                                 <span class="range-separator">—</span>
                                 <input type="number" id="yearTo" placeholder="2024" min="1950" max="2030">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Advanced Filters Toggle -->
                     <div class="filter-group">
                         <button class="advanced-filters-toggle" id="advancedToggle">
                             <span>Расширенные фильтры</span>
@@ -167,7 +171,6 @@
                         </button>
                     </div>
 
-                    <!-- Advanced Filters -->
                     <div class="advanced-filters" id="advancedFilters">
                         <div class="filter-group">
                             <label class="filter-label">Дальность полёта</label>
@@ -211,20 +214,17 @@
                     </div>
                 </div>
 
-                <!-- Active Filters -->
                 <div class="active-filters" id="activeFilters">
-                    <!-- Active filters will be displayed here -->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Results Section -->
     <section class="results-section">
         <div class="container">
             <div class="results-header">
                 <div class="results-info">
-                    <h3>Найдено единиц: <span id="resultsCount">45</span></h3>
+                    <h3>Найдено единиц: <span id="resultsCount">26</span></h3>
                     <div class="sort-controls">
                         <label>Сортировка:</label>
                         <select id="sortSelect">
@@ -248,18 +248,14 @@
                 </div>
             </div>
 
-            <!-- Aircraft Grid -->
             <div class="vehicles-grid" id="vehiclesGrid">
-                <!-- Aircraft cards will be dynamically loaded here -->
             </div>
 
-            <!-- Loading State -->
             <div class="loading-state" id="loadingState">
                 <div class="loading-spinner"></div>
                 <p>Загрузка авиатехники...</p>
             </div>
 
-            <!-- No Results State -->
             <div class="no-results" id="noResults" style="display: none;">
                 <div class="no-results-icon">✈️</div>
                 <h3>Самолёты не найдены</h3>
@@ -267,19 +263,16 @@
                 <button class="cta-button primary" id="resetSearch">Сбросить фильтры</button>
             </div>
 
-            <!-- Load More -->
             <div class="load-more-container">
                 <button class="load-more-btn" id="loadMore">Загрузить ещё</button>
             </div>
         </div>
     </section>
 
-    <!-- Quick View Modal -->
     <div class="modal" id="quickViewModal">
         <div class="modal-content">
             <button class="modal-close" id="modalClose">✕</button>
             <div class="modal-body" id="modalBody">
-                <!-- Quick view content will be loaded here -->
             </div>
         </div>
     </div>
@@ -335,7 +328,6 @@
     </footer>
 
     <script>
-// Enhanced Aircraft Catalog for Air Vehicles
 class AircraftCatalog {
     constructor() {
         this.aircraft = [];
@@ -369,7 +361,6 @@ class AircraftCatalog {
 
     loadAircraft() {
         this.aircraft = [
-            // Российские истребители
             {
                 id: 1,
                 name: "Су-57",
@@ -393,9 +384,30 @@ class AircraftCatalog {
             },
             {
                 id: 2,
+                name: "МиГ-31",
+                country: "russia",
+                type: "interceptor",
+                generation: "4",
+                era: "cold-war",
+                year: 1981,
+                range: 3300,
+                ceiling: 20.6,
+                speed: 3000,
+                engines: 2,
+                description: "Сверхзвуковой истребитель-перехватчик дальнего радиуса действия.",
+                specs: {
+                    crew: 2,
+                    length: "22.7 м",
+                    wingspan: "13.5 м",
+                    weight: "21820 кг",
+                    armament: "Р-33, Р-37, Р-77, 23-мм пушка"
+                }
+            },
+            {
+                id: 3,
                 name: "Су-35С",
                 country: "russia",
-                type: "fighter",
+                type: "multirole",
                 generation: "4+",
                 era: "modern",
                 year: 2014,
@@ -413,30 +425,196 @@ class AircraftCatalog {
                 }
             },
             {
-                id: 3,
-                name: "МиГ-31БМ",
+                id: 4,
+                name: "Су-34",
                 country: "russia",
-                type: "fighter",
-                generation: "4",
+                type: "attack",
+                generation: "4+",
                 era: "modern",
-                year: 2008,
-                range: 3300,
-                ceiling: 20.6,
-                speed: 3000,
+                year: 2014,
+                range: 4000,
+                ceiling: 15,
+                speed: 1900,
                 engines: 2,
-                description: "Сверхзвуковой истребитель-перехватчик дальнего радиуса действия.",
+                description: "Фронтовой бомбардировщик с кабиной типа 'плечом к плечу'.",
                 specs: {
                     crew: 2,
-                    length: "22.7 м",
-                    wingspan: "13.5 м",
-                    weight: "21820 кг",
-                    armament: "Р-33, Р-37, Р-77, 23-мм пушка"
+                    length: "23.3 м",
+                    wingspan: "14.7 м",
+                    weight: "22500 кг",
+                    armament: "30-мм пушка, ракеты 'воздух-поверхность'"
                 }
             },
-
-            // Американские истребители
             {
-                id: 4,
+                id: 5,
+                name: "Ту-95",
+                country: "russia",
+                type: "strategic-bomber",
+                generation: "3",
+                era: "cold-war",
+                year: 1956,
+                range: 15000,
+                ceiling: 12,
+                speed: 925,
+                engines: 4,
+                description: "Стратегический бомбардировщик-ракетоносец с турбовинтовыми двигателями.",
+                specs: {
+                    crew: 6,
+                    length: "49.1 м",
+                    wingspan: "54.1 м",
+                    weight: "172000 кг",
+                    armament: "Крылатые ракеты, свободнопадающие бомбы"
+                }
+            },
+            {
+                id: 6,
+                name: "Ту-160",
+                country: "russia",
+                type: "strategic-bomber",
+                generation: "4",
+                era: "cold-war",
+                year: 1987,
+                range: 12300,
+                ceiling: 16,
+                speed: 2200,
+                engines: 4,
+                description: "Стратегический сверхзвуковой бомбардировщик-ракетоносец.",
+                specs: {
+                    crew: 4,
+                    length: "54.1 м",
+                    wingspan: "55.7 м",
+                    weight: "110000 кг",
+                    armament: "Х-101, Х-555, крылатые ракеты"
+                }
+            },
+            {
+                id: 7,
+                name: "А-50",
+                country: "russia",
+                type: "awacs",
+                generation: "4",
+                era: "cold-war",
+                year: 1984,
+                range: 7500,
+                ceiling: 12,
+                speed: 800,
+                engines: 4,
+                description: "Самолёт дальнего радиолокационного обнаружения и управления.",
+                specs: {
+                    crew: 15,
+                    length: "46.6 м",
+                    wingspan: "50.5 м",
+                    weight: "190000 кг",
+                    armament: "Отсутствует"
+                }
+            },
+            {
+                id: 8,
+                name: "МиГ-25Р",
+                country: "russia",
+                type: "recon",
+                generation: "3",
+                era: "cold-war",
+                year: 1969,
+                range: 1730,
+                ceiling: 20.7,
+                speed: 3000,
+                engines: 2,
+                description: "Сверхзвуковой самолёт-разведчик на базе истребителя-перехватчика.",
+                specs: {
+                    crew: 1,
+                    length: "23.8 м",
+                    wingspan: "14 м",
+                    weight: "20000 кг",
+                    armament: "Отсутствует"
+                }
+            },
+            {
+                id: 9,
+                name: "Ил-76",
+                country: "russia",
+                type: "transport",
+                generation: "3",
+                era: "cold-war",
+                year: 1974,
+                range: 4000,
+                ceiling: 12,
+                speed: 900,
+                engines: 4,
+                description: "Советский военно-транспортный самолёт тяжёлого класса.",
+                specs: {
+                    crew: 5,
+                    length: "46.6 м",
+                    wingspan: "50.5 м",
+                    weight: "190000 кг",
+                    armament: "2×23-мм пушки (в некоторых модификациях)"
+                }
+            },
+            {
+                id: 10,
+                name: "МиГ-21",
+                country: "russia",
+                type: "fighter",
+                generation: "2",
+                era: "cold-war",
+                year: 1959,
+                range: 1210,
+                ceiling: 17.5,
+                speed: 2175,
+                engines: 1,
+                description: "Советский сверхзвуковой истребитель, один из самых массовых в истории.",
+                specs: {
+                    crew: 1,
+                    length: "15.8 м",
+                    wingspan: "7.2 м",
+                    weight: "8725 кг",
+                    armament: "Р-3, Р-13, 23-мм пушки"
+                }
+            },
+            {
+                id: 11,
+                name: "Ка-52 Аллигатор",
+                country: "russia",
+                type: "attack-helicopter",
+                generation: "4",
+                era: "modern",
+                year: 2011,
+                range: 520,
+                ceiling: 5.5,
+                speed: 300,
+                engines: 2,
+                description: "Разведывательно-ударный вертолёт с соосной схемой несущих винтов.",
+                specs: {
+                    crew: 2,
+                    length: "16 м",
+                    rotorDiameter: "14.5 м",
+                    weight: "10400 кг",
+                    armament: "ПТУР, НАР, 30-мм пушка"
+                }
+            },
+            {
+                id: 12,
+                name: "Ми-8",
+                country: "russia",
+                type: "transport-helicopter",
+                generation: "2",
+                era: "cold-war",
+                year: 1967,
+                range: 450,
+                ceiling: 4.5,
+                speed: 250,
+                engines: 2,
+                description: "Многоцелевой вертолёт, один из самых массовых в мире.",
+                specs: {
+                    crew: 3,
+                    length: "18.2 м",
+                    rotorDiameter: "21.3 м",
+                    weight: "11100 кг",
+                    armament: "Пулемёты, НАР (в ударном варианте)"
+                }
+            },
+            {
+                id: 13,
                 name: "F-22 Raptor",
                 country: "usa",
                 type: "fighter",
@@ -457,10 +635,10 @@ class AircraftCatalog {
                 }
             },
             {
-                id: 5,
+                id: 14,
                 name: "F-35 Lightning II",
                 country: "usa",
-                type: "fighter",
+                type: "multirole",
                 generation: "5",
                 era: "modern",
                 year: 2015,
@@ -477,34 +655,95 @@ class AircraftCatalog {
                     armament: "AIM-120, AIM-9, 25-мм пушка"
                 }
             },
-
-            // Бомбардировщики
             {
-                id: 6,
-                name: "Ту-160",
-                country: "russia",
-                type: "bomber",
+                id: 15,
+                name: "F-15 Eagle",
+                country: "usa",
+                type: "fighter",
                 generation: "4",
-                era: "modern",
-                year: 1987,
-                range: 12300,
-                ceiling: 16,
-                speed: 2200,
-                engines: 4,
-                description: "Стратегический сверхзвуковой бомбардировщик-ракетоносец.",
+                era: "cold-war",
+                year: 1976,
+                range: 1965,
+                ceiling: 20,
+                speed: 2650,
+                engines: 2,
+                description: "Всепогодный тактический истребитель завоевания превосходства в воздухе.",
                 specs: {
-                    crew: 4,
-                    length: "54.1 м",
-                    wingspan: "55.7 м",
-                    weight: "110000 кг",
-                    armament: "Х-101, Х-555, крылатые ракеты"
+                    crew: 1,
+                    length: "19.4 м",
+                    wingspan: "13.1 м",
+                    weight: "12900 кг",
+                    armament: "AIM-120, AIM-9, 20-мм пушка"
                 }
             },
             {
-                id: 7,
+                id: 16,
+                name: "F-16 Fighting Falcon",
+                country: "usa",
+                type: "multirole",
+                generation: "4",
+                era: "cold-war",
+                year: 1978,
+                range: 4200,
+                ceiling: 15.2,
+                speed: 2120,
+                engines: 1,
+                description: "Многоцелевой лёгкий истребитель.",
+                specs: {
+                    crew: 1,
+                    length: "15.1 м",
+                    wingspan: "9.96 м",
+                    weight: "8270 кг",
+                    armament: "AIM-120, AIM-9, 20-мм пушка"
+                }
+            },
+            {
+                id: 17,
+                name: "A-10 Thunderbolt II",
+                country: "usa",
+                type: "cas",
+                generation: "3",
+                era: "cold-war",
+                year: 1977,
+                range: 1000,
+                ceiling: 13.6,
+                speed: 833,
+                engines: 2,
+                description: "Штурмовик для непосредственной поддержки сухопутных войск.",
+                specs: {
+                    crew: 1,
+                    length: "16.2 м",
+                    wingspan: "17.5 м",
+                    weight: "11321 кг",
+                    armament: "30-мм пушка GAU-8, бомбы, ракеты"
+                }
+            },
+            {
+                id: 18,
+                name: "B-52 Stratofortress",
+                country: "usa",
+                type: "strategic-bomber",
+                generation: "2",
+                era: "cold-war",
+                year: 1955,
+                range: 16232,
+                ceiling: 15,
+                speed: 1047,
+                engines: 8,
+                description: "Стратегический бомбардировщик дальней авиации.",
+                specs: {
+                    crew: 5,
+                    length: "48.5 м",
+                    wingspan: "56.4 м",
+                    weight: "229000 кг",
+                    armament: "Ядерные и обычные бомбы, крылатые ракеты"
+                }
+            },
+            {
+                id: 19,
                 name: "B-2 Spirit",
                 country: "usa",
-                type: "bomber",
+                type: "strategic-bomber",
                 generation: "5",
                 era: "modern",
                 year: 1997,
@@ -521,78 +760,114 @@ class AircraftCatalog {
                     armament: "Ядерные и обычные бомбы"
                 }
             },
-
-            // Штурмовики
             {
-                id: 8,
-                name: "Су-25",
-                country: "russia",
-                type: "attack",
-                generation: "3",
+                id: 20,
+                name: "E-3 Sentry",
+                country: "usa",
+                type: "awacs",
+                generation: "4",
                 era: "cold-war",
-                year: 1981,
-                range: 1000,
-                ceiling: 7,
-                speed: 950,
+                year: 1977,
+                range: 9250,
+                ceiling: 12.5,
+                speed: 855,
+                engines: 4,
+                description: "Самолёт дальнего радиолокационного обнаружения на базе Boeing 707.",
+                specs: {
+                    crew: 17,
+                    length: "46.6 м",
+                    wingspan: "44.4 м",
+                    weight: "156000 кг",
+                    armament: "Отсутствует"
+                }
+            },
+            {
+                id: 21,
+                name: "C-130 Hercules",
+                country: "usa",
+                type: "transport",
+                generation: "2",
+                era: "cold-war",
+                year: 1956,
+                range: 3800,
+                ceiling: 10.1,
+                speed: 592,
+                engines: 4,
+                description: "Американский военно-транспортный самолёт средней дальности.",
+                specs: {
+                    crew: 5,
+                    length: "29.8 м",
+                    wingspan: "40.4 м",
+                    weight: "70300 кг",
+                    armament: "Отсутствует"
+                }
+            },
+            {
+                id: 22,
+                name: "AH-64 Apache",
+                country: "usa",
+                type: "attack-helicopter",
+                generation: "4",
+                era: "modern",
+                year: 1986,
+                range: 480,
+                ceiling: 6.4,
+                speed: 293,
                 engines: 2,
-                description: "Бронированный штурмовик для непосредственной поддержки войск.",
+                description: "Ударный вертолёт для борьбы с бронетехникой.",
+                specs: {
+                    crew: 2,
+                    length: "17.7 м",
+                    rotorDiameter: "14.6 м",
+                    weight: "5165 кг",
+                    armament: "ПТУР Hellfire, 30-мм пушка"
+                }
+            },
+            {
+                id: 23,
+                name: "Eurofighter Typhoon",
+                country: "europe",
+                type: "multirole",
+                generation: "4+",
+                era: "modern",
+                year: 2003,
+                range: 2900,
+                ceiling: 19.8,
+                speed: 2495,
+                engines: 2,
+                description: "Многоцелевой истребитель, разработанный консорциумом европейских стран.",
                 specs: {
                     crew: 1,
-                    length: "15.5 м",
-                    wingspan: "14.4 м",
-                    weight: "9500 кг",
-                    armament: "30-мм пушка, НАР, бомбы"
+                    length: "15.96 м",
+                    wingspan: "10.95 м",
+                    weight: "11000 кг",
+                    armament: "Meteor, AMRAAM, 27-мм пушка"
                 }
             },
-
-            // Вертолёты
             {
-                id: 9,
-                name: "Ка-52 Аллигатор",
-                country: "russia",
-                type: "helicopter",
-                generation: "4",
+                id: 24,
+                name: "Dassault Rafale",
+                country: "france",
+                type: "multirole",
+                generation: "4+",
                 era: "modern",
-                year: 2011,
-                range: 520,
-                ceiling: 5.5,
-                speed: 300,
+                year: 2001,
+                range: 3700,
+                ceiling: 15.2,
+                speed: 1912,
                 engines: 2,
-                description: "Разведывательно-ударный вертолёт с соосной схемой несущих винтов.",
+                description: "Французский многоцелевой истребитель поколения 4++.",
                 specs: {
-                    crew: 2,
-                    length: "16 м",
-                    rotorDiameter: "14.5 м",
-                    weight: "10400 кг",
-                    armament: "ПТУР, НАР, 30-мм пушка"
+                    crew: 1,
+                    length: "15.3 м",
+                    wingspan: "10.9 м",
+                    weight: "10000 кг",
+                    armament: "MICA, Meteor, 30-мм пушка"
                 }
             },
             {
-                id: 10,
-                name: "Ми-28Н",
-                country: "russia",
-                type: "helicopter",
-                generation: "4",
-                era: "modern",
-                year: 2009,
-                range: 450,
-                ceiling: 5.7,
-                speed: 300,
-                engines: 2,
-                description: "Ударный вертолёт ночного боя 'Ночной охотник'.",
-                specs: {
-                    crew: 2,
-                    length: "17 м",
-                    rotorDiameter: "17.2 м",
-                    weight: "10900 кг",
-                    armament: "ПТУР, НАР, 30-мм пушка"
-                }
-            },
-
-            // Китайские истребители
-            {
-                id: 11,
-                name: "J-20",
+                id: 25,
+                name: "Chengdu J-20",
                 country: "china",
                 type: "fighter",
                 generation: "5",
@@ -611,92 +886,25 @@ class AircraftCatalog {
                     armament: "PL-15, PL-10"
                 }
             },
-
-            // Европейские истребители
             {
-                id: 12,
-                name: "Eurofighter Typhoon",
-                country: "europe",
-                type: "fighter",
+                id: 26,
+                name: "Saab Gripen",
+                country: "sweden",
+                type: "multirole",
                 generation: "4+",
                 era: "modern",
-                year: 2003,
-                range: 2900,
-                ceiling: 19.8,
-                speed: 2495,
-                engines: 2,
-                description: "Многоцелевой истребитель, разработанный консорциумом европейских стран.",
-                specs: {
-                    crew: 1,
-                    length: "15.96 м",
-                    wingspan: "10.95 м",
-                    weight: "11000 кг",
-                    armament: "Meteor, AMRAAM, 27-мм пушка"
-                }
-            },
-
-            // Дополнительные самолёты
-            {
-                id: 13,
-                name: "МиГ-29",
-                country: "russia",
-                type: "fighter",
-                generation: "4",
-                era: "cold-war",
-                year: 1983,
-                range: 2100,
-                ceiling: 18,
-                speed: 2450,
-                engines: 2,
-                description: "Фронтовой истребитель четвёртого поколения.",
-                specs: {
-                    crew: 1,
-                    length: "17.3 м",
-                    wingspan: "11.4 м",
-                    weight: "10900 кг",
-                    armament: "Р-27, Р-73, 30-мм пушка"
-                }
-            },
-            {
-                id: 14,
-                name: "F-15 Eagle",
-                country: "usa",
-                type: "fighter",
-                generation: "4",
-                era: "cold-war",
-                year: 1976,
-                range: 1965,
-                ceiling: 20,
-                speed: 2650,
-                engines: 2,
-                description: "Всепогодный тактический истребитель.",
-                specs: {
-                    crew: 1,
-                    length: "19.4 м",
-                    wingspan: "13.1 м",
-                    weight: "12900 кг",
-                    armament: "AIM-120, AIM-9, 20-мм пушка"
-                }
-            },
-            {
-                id: 15,
-                name: "F-16 Fighting Falcon",
-                country: "usa",
-                type: "fighter",
-                generation: "4",
-                era: "cold-war",
-                year: 1978,
-                range: 4200,
-                ceiling: 15.2,
-                speed: 2120,
+                year: 1997,
+                range: 3200,
+                ceiling: 15,
+                speed: 2200,
                 engines: 1,
-                description: "Многоцелевой лёгкий истребитель.",
+                description: "Шведский многоцелевой истребитель с коротким взлётом и посадкой.",
                 specs: {
                     crew: 1,
-                    length: "15.1 м",
-                    wingspan: "9.96 м",
-                    weight: "8270 кг",
-                    armament: "AIM-120, AIM-9, 20-мм пушка"
+                    length: "14.1 м",
+                    wingspan: "8.4 м",
+                    weight: "6800 кг",
+                    armament: "Meteor, IRIS-T, 27-мм пушка"
                 }
             }
         ];
@@ -705,18 +913,15 @@ class AircraftCatalog {
     }
 
     bindEvents() {
-        // Toggle filters visibility
         document.getElementById('filtersToggle').addEventListener('click', () => {
             this.toggleFilters();
         });
 
-        // Search filter
         document.getElementById('searchFilter').addEventListener('input', (e) => {
             this.filters.search = e.target.value;
             this.applyFilters();
         });
 
-        // Type filter chips
         document.querySelectorAll('.filter-chip').forEach(chip => {
             chip.addEventListener('click', (e) => {
                 document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
@@ -726,7 +931,6 @@ class AircraftCatalog {
             });
         });
 
-        // Select filters
         ['country', 'era', 'generation', 'range', 'ceiling', 'speed', 'engines'].forEach(filter => {
             const element = document.getElementById(filter + 'Filter');
             if (element) {
@@ -737,7 +941,6 @@ class AircraftCatalog {
             }
         });
 
-        // Year range filters
         ['yearFrom', 'yearTo'].forEach(filter => {
             const element = document.getElementById(filter);
             if (element) {
@@ -748,7 +951,6 @@ class AircraftCatalog {
             }
         });
 
-        // Sort control
         const sortSelect = document.getElementById('sortSelect');
         if (sortSelect) {
             sortSelect.addEventListener('change', (e) => {
@@ -757,7 +959,6 @@ class AircraftCatalog {
             });
         }
 
-        // View controls
         document.querySelectorAll('.view-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
@@ -767,7 +968,6 @@ class AircraftCatalog {
             });
         });
 
-        // Advanced filters toggle
         const advancedToggle = document.getElementById('advancedToggle');
         if (advancedToggle) {
             advancedToggle.addEventListener('click', (e) => {
@@ -776,7 +976,6 @@ class AircraftCatalog {
             });
         }
 
-        // Clear filters
         const clearFilters = document.getElementById('clearFilters');
         if (clearFilters) {
             clearFilters.addEventListener('click', () => {
@@ -784,7 +983,6 @@ class AircraftCatalog {
             });
         }
 
-        // Reset search
         const resetSearch = document.getElementById('resetSearch');
         if (resetSearch) {
             resetSearch.addEventListener('click', () => {
@@ -792,7 +990,6 @@ class AircraftCatalog {
             });
         }
 
-        // Load more
         const loadMore = document.getElementById('loadMore');
         if (loadMore) {
             loadMore.addEventListener('click', () => {
@@ -800,7 +997,6 @@ class AircraftCatalog {
             });
         }
 
-        // Quick view modal
         const modalClose = document.getElementById('modalClose');
         if (modalClose) {
             modalClose.addEventListener('click', () => {
@@ -808,7 +1004,6 @@ class AircraftCatalog {
             });
         }
 
-        // Close modal on backdrop click
         const modal = document.getElementById('quickViewModal');
         if (modal) {
             modal.addEventListener('click', (e) => {
@@ -846,32 +1041,26 @@ class AircraftCatalog {
     }
 
     matchesFilters(aircraft) {
-        // Search filter
         if (this.filters.search && !aircraft.name.toLowerCase().includes(this.filters.search.toLowerCase())) {
             return false;
         }
 
-        // Type filter
         if (this.filters.type !== 'all' && aircraft.type !== this.filters.type) {
             return false;
         }
 
-        // Generation filter
         if (this.filters.generation !== 'all' && aircraft.generation !== this.filters.generation) {
             return false;
         }
 
-        // Country filter
         if (this.filters.country !== 'all' && aircraft.country !== this.filters.country) {
             return false;
         }
 
-        // Era filter
         if (this.filters.era !== 'all' && aircraft.era !== this.filters.era) {
             return false;
         }
 
-        // Year range filter
         if (this.filters.yearFrom && aircraft.year < parseInt(this.filters.yearFrom)) {
             return false;
         }
@@ -879,7 +1068,6 @@ class AircraftCatalog {
             return false;
         }
 
-        // Range filter
         if (this.filters.range !== 'all') {
             const range = aircraft.range;
             switch (this.filters.range) {
@@ -889,7 +1077,6 @@ class AircraftCatalog {
             }
         }
 
-        // Ceiling filter
         if (this.filters.ceiling !== 'all') {
             const ceiling = aircraft.ceiling;
             switch (this.filters.ceiling) {
@@ -899,7 +1086,6 @@ class AircraftCatalog {
             }
         }
 
-        // Speed filter
         if (this.filters.speed !== 'all') {
             const speed = aircraft.speed;
             switch (this.filters.speed) {
@@ -909,7 +1095,6 @@ class AircraftCatalog {
             }
         }
 
-        // Engines filter
         if (this.filters.engines !== 'all') {
             const engines = aircraft.engines;
             switch (this.filters.engines) {
@@ -1002,7 +1187,6 @@ class AircraftCatalog {
             }
         });
 
-        // Add remove event listeners
         document.querySelectorAll('.active-filter-remove').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const filter = e.target.dataset.filter;
@@ -1062,7 +1246,6 @@ class AircraftCatalog {
             engines: 'all'
         };
 
-        // Reset UI
         document.getElementById('searchFilter').value = '';
         document.querySelectorAll('.filter-chip').forEach(chip => {
             chip.classList.remove('active');
@@ -1089,7 +1272,6 @@ class AircraftCatalog {
 
         if (!grid) return;
 
-        // Hide loading, show appropriate state
         if (loadingState) loadingState.style.display = 'none';
 
         if (this.filteredAircraft.length === 0) {
@@ -1105,7 +1287,6 @@ class AircraftCatalog {
 
         grid.innerHTML = this.filteredAircraft.map(aircraft => this.createAircraftCard(aircraft)).join('');
 
-        // Add click events to new cards
         this.bindAircraftCardEvents();
     }
 
@@ -1177,7 +1358,6 @@ class AircraftCatalog {
             card.addEventListener('click', (e) => {
                 if (!e.target.classList.contains('vehicle-btn')) {
                     const aircraftId = parseInt(card.dataset.aircraftId);
-                    // Navigate to detail page
                     window.location.href = `aircraft-details.html?id=${aircraftId}`;
                 }
             });
@@ -1279,31 +1459,43 @@ class AircraftCatalog {
     }
 
     loadMore() {
-        // For now, just display all results
         this.displayAircraft();
         document.getElementById('loadMore').style.display = 'none';
     }
 
-    // Helper methods for labels
     getTypeLabel(type) {
         const types = {
             'fighter': 'Истребитель',
+            'interceptor': 'Истребитель-перехватчик',
+            'multirole': 'Многоцелевой истребитель',
             'bomber': 'Бомбардировщик',
+            'strategic-bomber': 'Стратегический бомбардировщик',
             'attack': 'Штурмовик',
+            'cas': 'Самолёт поддержки',
+            'recon': 'Самолёт-разведчик',
+            'awacs': 'Самолёт ДРЛО',
+            'tanker': 'Топливозаправщик',
             'transport': 'Транспортный',
             'trainer': 'Учебный',
-            'special': 'Специальный',
-            'helicopter': 'Вертолёт'
+            'attack-helicopter': 'Ударный вертолёт',
+            'transport-helicopter': 'Транспортный вертолёт',
+            'special': 'Специальный'
         };
         return types[type] || type;
     }
 
     getCountryLabel(country) {
         const countries = {
-            'russia': 'Россия',
+            'russia': 'Россия/СССР',
             'usa': 'США',
             'china': 'Китай',
-            'europe': 'Европа',
+            'germany': 'Германия',
+            'uk': 'Великобритания',
+            'france': 'Франция',
+            'japan': 'Япония',
+            'israel': 'Израиль',
+            'sweden': 'Швеция',
+            'europe': 'Европа (совместные)',
             'other': 'Другие'
         };
         return countries[country] || country;
@@ -1366,7 +1558,6 @@ class AircraftCatalog {
     }
 }
 
-// Initialize catalog when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.catalog = new AircraftCatalog();
 });
