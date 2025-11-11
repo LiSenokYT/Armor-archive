@@ -24,615 +24,162 @@ class VehicleCatalog {
         this.init();
     }
 
-    init() {
-        this.loadVehicles();
+    async init() {
+        await this.loadVehicles(); // Делаем асинхронным
         this.bindEvents();
         this.applyFilters();
         this.toggleFilters(false); // Start with filters collapsed
     }
 
-    // Sample vehicle data with expanded types
-    loadVehicles() {
+    // ЗАМЕНЯЕМ старый метод загрузки на новый
+    async loadVehicles() {
+        try {
+            const loader = window.dataLoader;
+            this.vehicles = await loader.loadVehicles('ground');
+            
+            // Логируем для проверки
+            console.log('📦 Загружено из JSON:', this.vehicles.length, 'единиц');
+            
+            this.displayVehicles();
+        } catch (error) {
+            console.error('Ошибка загрузки данных:', error);
+            // Fallback - можно оставить старые данные на случай ошибки
+            this.loadVehiclesFallback();
+        }
+    }
+
+    // Fallback метод на случай проблем
+    loadVehiclesFallback() {
+        console.log('Используем fallback данные...');
+        // Твои старые данные из catalog.js
         this.vehicles = [
-            // Основные боевые танки (ОБТ)
             {
-                id: 1,
+                id: "t-72b3",
                 name: "Т-72Б3",
-                country: "ussr",
-                type: "mbt",
+                country: "russia",
+                category: "mbt",
                 era: "modern",
                 year: 2016,
-                weight: 46,
-                crew: 3,
-                caliber: 125,
-                image: "",
-                description: "Современная модернизация основного боевого танка Т-72 с улучшенной защитой и системами управления огнём.",
                 specs: {
+                    weight: 46,
+                    crew: 3,
+                    caliber: 125,
                     speed: 60,
                     engine: "В-84-1, 840 л.с.",
                     armor: "Комбинированная",
                     mainGun: "125mm 2A46M"
-                }
+                },
+                description: "Современная модернизация основного боевого танка Т-72 с улучшенной защитой и системами управления огнём."
             },
             {
-                id: 2,
+                id: "m1a2-abrams",
                 name: "M1A2 Abrams",
                 country: "usa",
-                type: "mbt",
+                category: "mbt",
                 era: "modern",
                 year: 1992,
-                weight: 63,
-                crew: 4,
-                caliber: 120,
-                image: "",
-                description: "Американский основной боевой танк третьего поколения с цифровой системой управления.",
                 specs: {
+                    weight: 63,
+                    crew: 4,
+                    caliber: 120,
                     speed: 67,
                     engine: "AGT-1500, 1500 л.с.",
                     armor: "Композитная",
                     mainGun: "120mm M256"
-                }
+                },
+                description: "Американский основной боевой танк третьего поколения с цифровой системой управления."
             },
             {
-                id: 3,
+                id: "leopard-2a7",
                 name: "Leopard 2A7",
                 country: "germany",
-                type: "mbt",
+                category: "mbt",
                 era: "modern",
                 year: 2014,
-                weight: 67,
-                crew: 4,
-                caliber: 120,
-                image: "",
-                description: "Немецкий основной боевой танк, считающийся одним из лучших в мире.",
                 specs: {
+                    weight: 67,
+                    crew: 4,
+                    caliber: 120,
                     speed: 72,
                     engine: "MTU MB 873, 1500 л.с.",
                     armor: "Композитная",
                     mainGun: "120mm Rh-120"
-                }
+                },
+                description: "Немецкий основной боевой танк, считающийся одним из лучших в мире."
             },
-
-            // Лёгкие танки
             {
-                id: 4,
+                id: "amx-13",
                 name: "AMX-13",
                 country: "france",
-                type: "light-tank",
+                category: "light-tank",
                 era: "cold-war",
                 year: 1953,
-                weight: 15,
-                crew: 3,
-                caliber: 75,
-                image: "",
-                description: "Французский лёгкий танк с качающейся башней и автоматом заряжания.",
                 specs: {
+                    weight: 15,
+                    crew: 3,
+                    caliber: 75,
                     speed: 60,
                     engine: "SOFAM 8Gxb, 250 л.с.",
                     armor: "Противоосколочная",
                     mainGun: "75mm CN-75-50"
-                }
+                },
+                description: "Французский лёгкий танк с качающейся башней и автоматом заряжания."
             },
-
-            // Средние танки
             {
-                id: 5,
+                id: "t-34-85",
                 name: "Т-34-85",
-                country: "ussr",
-                type: "medium-tank",
+                country: "russia",
+                category: "medium-tank",
                 era: "ww2",
                 year: 1944,
-                weight: 32,
-                crew: 5,
-                caliber: 85,
-                image: "",
-                description: "Легендарный советский средний танк времён Второй мировой войны.",
                 specs: {
+                    weight: 32,
+                    crew: 5,
+                    caliber: 85,
                     speed: 55,
                     engine: "В-2-34, 500 л.с.",
                     armor: "Катаная сталь",
                     mainGun: "85mm ЗИС-С-53"
-                }
+                },
+                description: "Легендарный советский средний танк времён Второй мировой войны."
             },
-
-            // Тяжёлые танки
             {
-                id: 6,
+                id: "tiger-i",
                 name: "Tiger I",
                 country: "germany",
-                type: "heavy-tank",
+                category: "heavy-tank",
                 era: "ww2",
                 year: 1942,
-                weight: 57,
-                crew: 5,
-                caliber: 88,
-                image: "",
-                description: "Немецкий тяжёлый танк, один из самых известных танков Второй мировой.",
                 specs: {
+                    weight: 57,
+                    crew: 5,
+                    caliber: 88,
                     speed: 45,
                     engine: "Maybach HL230, 700 л.с.",
                     armor: "Катаная сталь",
                     mainGun: "88mm KwK 36"
-                }
+                },
+                description: "Немецкий тяжёлый танк, один из самых известных танков Второй мировой."
             },
-
-            // БМП
             {
-                id: 7,
+                id: "bmp-3",
                 name: "БМП-3",
-                country: "ussr",
-                type: "ifv",
+                country: "russia",
+                category: "ifv",
                 era: "cold-war",
                 year: 1987,
-                weight: 18,
-                crew: 3,
-                caliber: 100,
-                image: "",
-                description: "Боевая машина пехоты с уникальным комплексом вооружения.",
                 specs: {
+                    weight: 18,
+                    crew: 3,
+                    caliber: 100,
                     speed: 70,
                     engine: "УТД-29, 500 л.с.",
                     armor: "Алюминиевая",
                     mainGun: "100mm 2A70"
-                }
-            },
-
-            // БТР
-            {
-                id: 8,
-                name: "БТР-82А",
-                country: "ussr",
-                type: "apc",
-                era: "modern",
-                year: 2013,
-                weight: 15,
-                crew: 3,
-                caliber: 30,
-                image: "",
-                description: "Современный бронетранспортёр с улучшенными характеристиками.",
-                specs: {
-                    speed: 80,
-                    engine: "Камаз-740.14-300, 300 л.с.",
-                    armor: "Стальная",
-                    mainGun: "30mm 2A72"
-                }
-            },
-
-            // САУ
-            {
-                id: 9,
-                name: "2С19 Мста-С",
-                country: "ussr",
-                type: "spg",
-                era: "modern",
-                year: 1989,
-                weight: 42,
-                crew: 5,
-                caliber: 152,
-                image: "",
-                description: "Советская и российская 152-мм самоходная гаубица.",
-                specs: {
-                    speed: 60,
-                    engine: "В-84А, 780 л.с.",
-                    armor: "Противоосколочная",
-                    mainGun: "152mm 2A64"
-                }
-            },
-
-            // БРДМ
-            {
-                id: 10,
-                name: "БРДМ-2",
-                country: "ussr",
-                type: "brdm",
-                era: "cold-war",
-                year: 1962,
-                weight: 7,
-                crew: 4,
-                caliber: 14.5,
-                image: "",
-                description: "Бронированная разведывательно-дозорная машина.",
-                specs: {
-                    speed: 100,
-                    engine: "ГАЗ-41, 140 л.с.",
-                    armor: "Стальная",
-                    mainGun: "14.5mm КПВТ"
-                }
-            },
-
-            // БМД
-            {
-                id: 11,
-                name: "БМД-4",
-                country: "ussr",
-                type: "bmd",
-                era: "modern",
-                year: 2004,
-                weight: 14,
-                crew: 3,
-                caliber: 100,
-                image: "",
-                description: "Боевая машина десанта для воздушно-десантных войск.",
-                specs: {
-                    speed: 70,
-                    engine: "2В-06-2, 450 л.с.",
-                    armor: "Алюминиевая",
-                    mainGun: "100mm 2A70"
-                }
-            },
-
-            // РХБЗ
-            {
-                id: 12,
-                name: "РХМ",
-                country: "ussr",
-                type: "cbrn",
-                era: "cold-war",
-                year: 1970,
-                weight: 16,
-                crew: 4,
-                caliber: 0,
-                image: "",
-                description: "Машина радиационной и химической разведки.",
-                specs: {
-                    speed: 65,
-                    engine: "ЯМЗ-238, 240 л.с.",
-                    armor: "Стальная",
-                    mainGun: "Отсутствует"
-                }
-            },
-
-            // ИРМ
-            {
-                id: 13,
-                name: "ИМР-2",
-                country: "ussr",
-                type: "engineer",
-                era: "cold-war",
-                year: 1980,
-                weight: 45,
-                crew: 2,
-                caliber: 0,
-                image: "",
-                description: "Инженерная машина разграждения на базе танка Т-72.",
-                specs: {
-                    speed: 60,
-                    engine: "В-46-6, 780 л.с.",
-                    armor: "Комбинированная",
-                    mainGun: "Бульдозерное оборудование"
-                }
-            },
-
-            // ЗСУ
-            {
-                id: 14,
-                name: "ЗСУ-23-4 Шилка",
-                country: "ussr",
-                type: "spaag",
-                era: "cold-war",
-                year: 1965,
-                weight: 21,
-                crew: 4,
-                caliber: 23,
-                image: "",
-                description: "Зенитная самоходная установка для борьбы с низколетящими целями.",
-                specs: {
-                    speed: 50,
-                    engine: "В-6Р, 280 л.с.",
-                    armor: "Стальная",
-                    mainGun: "4×23mm 2А7"
-                }
-            },
-
-            // МТО
-            {
-                id: 15,
-                name: "МТО-БТ",
-                country: "ussr",
-                type: "recovery",
-                era: "modern",
-                year: 1984,
-                weight: 42,
-                crew: 3,
-                caliber: 0,
-                image: "",
-                description: "Машина технической помощи на базе танка Т-72.",
-                specs: {
-                    speed: 60,
-                    engine: "В-84, 840 л.с.",
-                    armor: "Комбинированная",
-                    mainGun: "Кран 25т, лебёдка"
-                }
-            },
-
-            // Additional vehicles to reach ~30 items
-            {
-                id: 16,
-                name: "Т-90М",
-                country: "ussr",
-                type: "mbt",
-                era: "modern",
-                year: 2017,
-                weight: 48,
-                crew: 3,
-                caliber: 125,
-                image: "",
-                description: "Глубокая модернизация танка Т-90 с улучшенной защитой и СУО.",
-                specs: {
-                    speed: 65,
-                    engine: "В-92С2, 1130 л.с.",
-                    armor: "Комбинированная",
-                    mainGun: "125mm 2A46M-5"
-                }
-            },
-            {
-                id: 17,
-                name: "Challenger 2",
-                country: "uk",
-                type: "mbt",
-                era: "modern",
-                year: 1998,
-                weight: 62,
-                crew: 4,
-                caliber: 120,
-                image: "",
-                description: "Британский основной боевой танк с знаменитой броней Чобхэм.",
-                specs: {
-                    speed: 59,
-                    engine: "Perkins CV12, 1200 л.с.",
-                    armor: "Чобхэм",
-                    mainGun: "120mm L30A1"
-                }
-            },
-            {
-                id: 18,
-                name: "Leclerc",
-                country: "france",
-                type: "mbt",
-                era: "modern",
-                year: 1992,
-                weight: 57,
-                crew: 3,
-                caliber: 120,
-                image: "",
-                description: "Французский основной боевой танк с автоматом заряжания.",
-                specs: {
-                    speed: 72,
-                    engine: "SACM V8X, 1500 л.с.",
-                    armor: "Композитная",
-                    mainGun: "120mm CN120-26"
-                }
-            },
-            {
-                id: 19,
-                name: "Type 99",
-                country: "china",
-                type: "mbt",
-                era: "modern",
-                year: 2001,
-                weight: 58,
-                crew: 3,
-                caliber: 125,
-                image: "",
-                description: "Китайский основной боевой танк третьего поколения.",
-                specs: {
-                    speed: 80,
-                    engine: "150HB, 1500 л.с.",
-                    armor: "Композитная",
-                    mainGun: "125mm ZPT-98"
-                }
-            },
-            {
-                id: 20,
-                name: "M2 Bradley",
-                country: "usa",
-                type: "ifv",
-                era: "cold-war",
-                year: 1981,
-                weight: 27,
-                crew: 3,
-                caliber: 25,
-                image: "",
-                description: "Американская боевая машина пехоты с мощным вооружением.",
-                specs: {
-                    speed: 66,
-                    engine: "Cummins VTA-903T, 600 л.с.",
-                    armor: "Алюминиевая",
-                    mainGun: "25mm M242"
-                }
-            },
-            {
-                id: 21,
-                name: "M113",
-                country: "usa",
-                type: "apc",
-                era: "cold-war",
-                year: 1960,
-                weight: 12,
-                crew: 2,
-                caliber: 12.7,
-                image: "",
-                description: "Американский бронетранспортёр, один из самых массовых в мире.",
-                specs: {
-                    speed: 64,
-                    engine: "Detroit Diesel 6V53, 215 л.с.",
-                    armor: "Алюминиевая",
-                    mainGun: "12.7mm M2"
-                }
-            },
-            {
-                id: 22,
-                name: "PzH 2000",
-                country: "germany",
-                type: "spg",
-                era: "modern",
-                year: 1998,
-                weight: 57,
-                crew: 5,
-                caliber: 155,
-                image: "",
-                description: "Немецкая 155-мм самоходная гаубица с высокой автоматизацией.",
-                specs: {
-                    speed: 60,
-                    engine: "MTU 881, 1000 л.с.",
-                    armor: "Стальная",
-                    mainGun: "155mm L52"
-                }
-            },
-            {
-                id: 23,
-                name: "CV90",
-                country: "sweden",
-                type: "ifv",
-                era: "modern",
-                year: 1993,
-                weight: 28,
-                crew: 3,
-                caliber: 40,
-                image: "",
-                description: "Шведская боевая машина пехоты с мощной 40-мм пушкой.",
-                specs: {
-                    speed: 70,
-                    engine: "Scania DI16, 670 л.с.",
-                    armor: "Стальная",
-                    mainGun: "40mm Bofors"
-                }
-            },
-            {
-                id: 24,
-                name: "BMP-2",
-                country: "ussr",
-                type: "ifv",
-                era: "cold-war",
-                year: 1980,
-                weight: 14,
-                crew: 3,
-                caliber: 30,
-                image: "",
-                description: "Советская боевая машина пехоты второго поколения.",
-                specs: {
-                    speed: 65,
-                    engine: "УТД-20, 300 л.с.",
-                    armor: "Алюминиевая",
-                    mainGun: "30mm 2A42"
-                }
-            },
-            {
-                id: 25,
-                name: "Т-80БВ",
-                country: "ussr",
-                type: "mbt",
-                era: "cold-war",
-                year: 1985,
-                weight: 46,
-                crew: 3,
-                caliber: 125,
-                image: "",
-                description: "Советский основной боевой танк с газотурбинным двигателем.",
-                specs: {
-                    speed: 70,
-                    engine: "ГТД-1250, 1250 л.с.",
-                    armor: "Комбинированная",
-                    mainGun: "125mm 2A46-2"
-                }
-            },
-            {
-                id: 26,
-                name: "M109",
-                country: "usa",
-                type: "spg",
-                era: "cold-war",
-                year: 1963,
-                weight: 28,
-                crew: 6,
-                caliber: 155,
-                image: "",
-                description: "Американская 155-мм самоходная гаубица.",
-                specs: {
-                    speed: 56,
-                    engine: "Detroit Diesel 8V71T, 405 л.с.",
-                    armor: "Алюминиевая",
-                    mainGun: "155mm M185"
-                }
-            },
-            {
-                id: 27,
-                name: "БМП-1",
-                country: "ussr",
-                type: "ifv",
-                era: "cold-war",
-                year: 1966,
-                weight: 13,
-                crew: 3,
-                caliber: 73,
-                image: "",
-                description: "Первая в мире серийная боевая машина пехоты.",
-                specs: {
-                    speed: 65,
-                    engine: "УТД-20, 300 л.с.",
-                    armor: "Стальная",
-                    mainGun: "73mm 2A28"
-                }
-            },
-            {
-                id: 28,
-                name: "БРМ-1",
-                country: "ussr",
-                type: "brdm",
-                era: "cold-war",
-                year: 1975,
-                weight: 14,
-                crew: 4,
-                caliber: 73,
-                image: "",
-                description: "Бронированная разведывательная машина на базе БМП-1.",
-                specs: {
-                    speed: 65,
-                    engine: "УТД-20, 300 л.с.",
-                    armor: "Стальная",
-                    mainGun: "73mm 2A28"
-                }
-            },
-            {
-                id: 29,
-                name: "2С3 Акация",
-                country: "ussr",
-                type: "spg",
-                era: "cold-war",
-                year: 1971,
-                weight: 28,
-                crew: 6,
-                caliber: 152,
-                image: "",
-                description: "Советская 152-мм самоходная гаубица.",
-                specs: {
-                    speed: 60,
-                    engine: "В-59, 520 л.с.",
-                    armor: "Стальная",
-                    mainGun: "152mm 2A33"
-                }
-            },
-            {
-                id: 30,
-                name: "БТР-80",
-                country: "ussr",
-                type: "apc",
-                era: "cold-war",
-                year: 1986,
-                weight: 14,
-                crew: 3,
-                caliber: 14.5,
-                image: "",
-                description: "Советский бронетранспортёр с улучшенными характеристиками.",
-                specs: {
-                    speed: 80,
-                    engine: "Камаз-7403, 260 л.с.",
-                    armor: "Стальная",
-                    mainGun: "14.5mm КПВТ"
-                }
+                },
+                description: "Боевая машина пехоты с уникальным комплексом вооружения."
             }
         ];
-
         this.displayVehicles();
     }
 
@@ -784,8 +331,8 @@ class VehicleCatalog {
             return false;
         }
 
-        // Type filter
-        if (this.filters.type !== 'all' && vehicle.type !== this.filters.type) {
+        // Type filter (используем category вместо type)
+        if (this.filters.type !== 'all' && vehicle.category !== this.filters.type) {
             return false;
         }
 
@@ -807,9 +354,9 @@ class VehicleCatalog {
             return false;
         }
 
-        // Caliber filter
+        // Caliber filter (используем vehicle.specs.caliber)
         if (this.filters.caliber !== 'all') {
-            const caliber = vehicle.caliber;
+            const caliber = vehicle.specs.caliber;
             switch (this.filters.caliber) {
                 case 'small': if (caliber > 75) return false; break;
                 case 'medium': if (caliber <= 75 || caliber > 105) return false; break;
@@ -818,9 +365,9 @@ class VehicleCatalog {
             }
         }
 
-        // Crew filter
+        // Crew filter (используем vehicle.specs.crew)
         if (this.filters.crew !== 'all') {
-            const crew = vehicle.crew;
+            const crew = vehicle.specs.crew;
             switch (this.filters.crew) {
                 case '1-2': if (crew > 2) return false; break;
                 case '3-4': if (crew < 3 || crew > 4) return false; break;
@@ -828,9 +375,9 @@ class VehicleCatalog {
             }
         }
 
-        // Weight filter
+        // Weight filter (используем vehicle.specs.weight)
         if (this.filters.weight !== 'all') {
-            const weight = vehicle.weight;
+            const weight = vehicle.specs.weight;
             switch (this.filters.weight) {
                 case 'light': if (weight > 20) return false; break;
                 case 'medium': if (weight <= 20 || weight > 40) return false; break;
@@ -854,9 +401,9 @@ class VehicleCatalog {
                 case 'year-desc':
                     return b.year - a.year;
                 case 'weight':
-                    return a.weight - b.weight;
+                    return a.specs.weight - b.specs.weight;
                 case 'weight-desc':
-                    return b.weight - a.weight;
+                    return b.specs.weight - a.specs.weight;
                 default:
                     return 0;
             }
@@ -1035,7 +582,7 @@ class VehicleCatalog {
     }
 
     createVehicleCard(vehicle) {
-        const typeLabel = this.getTypeLabel(vehicle.type);
+        const typeLabel = this.getTypeLabel(vehicle.category); // меняем vehicle.type на vehicle.category
         const countryLabel = this.getCountryLabel(vehicle.country);
 
         return `
@@ -1056,15 +603,15 @@ class VehicleCatalog {
                     <div class="vehicle-specs">
                         <div class="vehicle-spec">
                             <span class="spec-label">Масса</span>
-                            <span class="spec-value">${vehicle.weight}т</span>
+                            <span class="spec-value">${vehicle.specs.weight}т</span>
                         </div>
                         <div class="vehicle-spec">
                             <span class="spec-label">Экипаж</span>
-                            <span class="spec-value">${vehicle.crew}</span>
+                            <span class="spec-value">${vehicle.specs.crew}</span>
                         </div>
                         <div class="vehicle-spec">
                             <span class="spec-label">Калибр</span>
-                            <span class="spec-value">${vehicle.caliber}мм</span>
+                            <span class="spec-value">${vehicle.specs.caliber}мм</span>
                         </div>
                         <div class="vehicle-spec">
                             <span class="spec-label">Скорость</span>
@@ -1078,7 +625,7 @@ class VehicleCatalog {
                         <button class="vehicle-btn quick-view-btn" data-vehicle-id="${vehicle.id}">
                             Быстрый просмотр
                         </button>
-                        <a href="vehicle-details.html" class="vehicle-btn secondary">
+                        <a href="vehicle-details.html?id=${vehicle.id}" class="vehicle-btn secondary">
                             Подробнее
                         </a>
                     </div>
@@ -1091,7 +638,7 @@ class VehicleCatalog {
         document.querySelectorAll('.quick-view-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const vehicleId = parseInt(e.target.dataset.vehicleId);
+                const vehicleId = e.target.dataset.vehicleId;
                 this.showQuickView(vehicleId);
             });
         });
@@ -1099,7 +646,7 @@ class VehicleCatalog {
         document.querySelectorAll('.vehicle-card').forEach(card => {
             card.addEventListener('click', (e) => {
                 if (!e.target.classList.contains('vehicle-btn')) {
-                    const vehicleId = parseInt(card.dataset.vehicleId);
+                    const vehicleId = card.dataset.vehicleId;
                     // Navigate to detail page
                     window.location.href = `../vehicle-details.html?id=${vehicleId}`;
                 }
@@ -1120,7 +667,7 @@ class VehicleCatalog {
     }
 
     createQuickViewContent(vehicle) {
-        const typeLabel = this.getTypeLabel(vehicle.type);
+        const typeLabel = this.getTypeLabel(vehicle.category); // меняем vehicle.type на vehicle.category
         const countryLabel = this.getCountryLabel(vehicle.country);
 
         return `
@@ -1141,11 +688,11 @@ class VehicleCatalog {
                     <div class="quick-view-specs">
                         <div class="spec-row">
                             <span class="spec-name">Экипаж:</span>
-                            <span class="spec-value">${vehicle.crew} человека</span>
+                            <span class="spec-value">${vehicle.specs.crew} человека</span>
                         </div>
                         <div class="spec-row">
                             <span class="spec-name">Боевая масса:</span>
-                            <span class="spec-value">${vehicle.weight} тонн</span>
+                            <span class="spec-value">${vehicle.specs.weight} тонн</span>
                         </div>
                         <div class="spec-row">
                             <span class="spec-name">Основное вооружение:</span>
@@ -1219,6 +766,7 @@ class VehicleCatalog {
     getCountryLabel(country) {
         const countries = {
             'ussr': 'СССР/Россия',
+            'russia': 'Россия',
             'usa': 'США',
             'germany': 'Германия',
             'uk': 'Великобритания',
