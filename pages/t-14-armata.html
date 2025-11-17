@@ -55,7 +55,7 @@
                 <div class="vehicle-quick-info">
                     <div class="info-item">
                         <span class="info-label">Страна</span>
-                        <span class="info-value">🇷🇺 Россия</span>
+                        <span class="info-value">Россия</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Год принятия</span>
@@ -82,19 +82,18 @@
                 <aside class="vehicle-sidebar">
                     <nav class="sidebar-nav">
                         <ul>
-                            <li><a href="#overview" class="nav-link active">📋 Обзор</a></li>
-                            <li><a href="#specifications" class="nav-link">⚙️ Характеристики</a></li>
-                            <li><a href="#armament" class="nav-link">🎯 Вооружение</a></li>
-                            <li><a href="#protection" class="nav-link">🛡️ Защита</a></li>
-                            <li><a href="#mobility" class="nav-link">🚀 Подвижность</a></li>
-                            <li><a href="#electronics" class="nav-link">🔌 Электроника</a></li>
-                            <li><a href="#history" class="nav-link">📜 История</a></li>
-                            <li><a href="#gallery" class="nav-link">🖼️ Галерея</a></li>
+                            <li><a href="#overview" class="nav-link active">Обзор</a></li>
+                            <li><a href="#specifications" class="nav-link">Характеристики</a></li>
+                            <li><a href="#armament" class="nav-link">Вооружение</a></li>
+                            <li><a href="#protection" class="nav-link">Защита</a></li>
+                            <li><a href="#mobility" class="nav-link">Подвижность</a></li>
+                            <li><a href="#history" class="nav-link">История</a></li>
+                            <li><a href="#modifications" class="nav-link">Модификации</a></li>
                         </ul>
                     </nav>
                     
                     <div class="quick-stats-sidebar">
-                        <h3>⚡ Ключевые параметры</h3>
+                        <h3>Ключевые параметры</h3>
                         <div class="stat-item">
                             <span class="stat-label">Макс. скорость</span>
                             <span class="stat-value">80 км/ч</span>
@@ -119,7 +118,7 @@
                     <!-- Overview Section -->
                     <section id="overview" class="content-section">
                         <div class="section-header">
-                            <h2>📋 Обзор</h2>
+                            <h2>Обзор</h2>
                             <div class="section-badge">ТАНК НОВОГО ПОКОЛЕНИЯ</div>
                         </div>
                         
@@ -128,7 +127,6 @@
                                 <div class="image-placeholder">
                                     <span>Т-14 Армата</span>
                                     <small>Основной боевой танк</small>
-                                    <div style="margin-top: 1rem; font-size: 3rem;">🎯</div>
                                 </div>
                             </div>
                             
@@ -140,7 +138,7 @@
                                 
                                 <div class="features-grid">
                                     <div class="feature">
-                                        <div class="feature-icon">🚀</div>
+                                        <div class="feature-icon">⚡</div>
                                         <div class="feature-content">
                                             <h4>Инновационная компоновка</h4>
                                             <p>Экипаж размещён в изолированной бронекапсуле в отделении управления, что значительно повышает выживаемость</p>
@@ -161,7 +159,7 @@
                                         </div>
                                     </div>
                                     <div class="feature">
-                                        <div class="feature-icon">🔌</div>
+                                        <div class="feature-icon">🔧</div>
                                         <div class="feature-content">
                                             <h4>Цифровая архитектура</h4>
                                             <p>Единая информационно-управляющая система с цифровой шиной данных и сетью датчиков</p>
@@ -175,12 +173,16 @@
                     <!-- Specifications Section -->
                     <section id="specifications" class="content-section">
                         <div class="section-header">
-                            <h2>⚙️ Технические характеристики</h2>
+                            <h2>Технические характеристики</h2>
+                            <button class="toggle-specs" id="toggleSpecs">
+                                <span>Показать все</span>
+                                <span>▼</span>
+                            </button>
                         </div>
                         
                         <div class="specs-container">
                             <div class="specs-group">
-                                <h3 class="specs-group-title">📏 Габаритные размеры</h3>
+                                <h3 class="specs-group-title">Габаритные размеры</h3>
                                 <div class="specs-grid">
                                     <div class="spec-item">
                                         <span class="spec-label">Длина с пушкой вперёд</span>
@@ -206,7 +208,7 @@
                             </div>
 
                             <div class="specs-group">
-                                <h3 class="specs-group-title">⚖️ Массовые характеристики</h3>
+                                <h3 class="specs-group-title">Массовые характеристики</h3>
                                 <div class="specs-grid">
                                     <div class="spec-item">
                                         <span class="spec-label">Боевая масса</span>
@@ -220,7 +222,7 @@
                             </div>
 
                             <div class="specs-group">
-                                <h3 class="specs-group-title">👥 Экипаж</h3>
+                                <h3 class="specs-group-title">Экипаж</h3>
                                 <div class="specs-grid">
                                     <div class="spec-item">
                                         <span class="spec-label">Состав экипажа</span>
@@ -232,19 +234,62 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Advanced Specifications -->
+                            <div class="advanced-specs" id="advancedSpecs">
+                                <div class="specs-group">
+                                    <h3 class="specs-group-title">Двигатель и трансмиссия</h3>
+                                    <div class="specs-grid">
+                                        <div class="spec-item">
+                                            <span class="spec-label">Тип двигателя</span>
+                                            <span class="spec-value">А-85-3А (12Н360)</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <span class="spec-label">Мощность</span>
+                                            <span class="spec-value">1500 л.с.</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <span class="spec-label">Удельная мощность</span>
+                                            <span class="spec-value">27,3 л.с./т</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <span class="spec-label">Тип трансмиссии</span>
+                                            <span class="spec-value">Автоматическая 8-ступенчатая</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="specs-group">
+                                    <h3 class="specs-group-title">Динамические характеристики</h3>
+                                    <div class="specs-grid">
+                                        <div class="spec-item">
+                                            <span class="spec-label">Максимальная скорость</span>
+                                            <span class="spec-value">80-90 км/ч</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <span class="spec-label">Скорость по шоссе</span>
+                                            <span class="spec-value">70-75 км/ч</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <span class="spec-label">Запас хода по шоссе</span>
+                                            <span class="spec-value">500 км</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
 
                     <!-- Armament Section -->
                     <section id="armament" class="content-section">
                         <div class="section-header">
-                            <h2>🎯 Вооружение</h2>
+                            <h2>Вооружение</h2>
                             <div class="section-badge">ОСНОВНОЕ И ДОПОЛНИТЕЛЬНОЕ</div>
                         </div>
                         
                         <div class="specs-container">
                             <div class="specs-group">
-                                <h3 class="specs-group-title">🗡️ Основное вооружение</h3>
+                                <h3 class="specs-group-title">Основное вооружение</h3>
                                 <div class="specs-grid">
                                     <div class="spec-item">
                                         <span class="spec-label">Тип орудия</span>
@@ -266,7 +311,7 @@
                             </div>
 
                             <div class="specs-group">
-                                <h3 class="specs-group-title">🔫 Дополнительное вооружение</h3>
+                                <h3 class="specs-group-title">Дополнительное вооружение</h3>
                                 <div class="specs-grid">
                                     <div class="spec-item">
                                         <span class="spec-label">Спаренный пулемёт</span>
@@ -282,41 +327,19 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">🎯 Система управления огнём</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Прицел наводчика</span>
-                                        <span class="spec-value">Многоспектральный</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Прицел командира</span>
-                                        <span class="spec-value">Панорамный</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Дальномер</span>
-                                        <span class="spec-value">Лазерный</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Баллистический вычислитель</span>
-                                        <span class="spec-value">Цифровой</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </section>
 
                     <!-- Protection Section -->
                     <section id="protection" class="content-section">
                         <div class="section-header">
-                            <h2>🛡️ Защита</h2>
+                            <h2>Защита</h2>
                             <div class="section-badge">КОМПЛЕКСНАЯ СИСТЕМА</div>
                         </div>
                         
                         <div class="specs-container">
                             <div class="specs-group">
-                                <h3 class="specs-group-title">🛡️ Бронирование</h3>
+                                <h3 class="specs-group-title">Бронирование</h3>
                                 <div class="specs-grid">
                                     <div class="spec-item">
                                         <span class="spec-label">Тип брони</span>
@@ -338,7 +361,7 @@
                             </div>
 
                             <div class="specs-group">
-                                <h3 class="specs-group-title">🚫 Активная защита</h3>
+                                <h3 class="specs-group-title">Активная защита</h3>
                                 <div class="specs-grid">
                                     <div class="spec-item">
                                         <span class="spec-label">Комплекс активной защиты</span>
@@ -358,81 +381,19 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">🛡️ Дополнительная защита</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Система оптико-электронного подавления</span>
-                                        <span class="spec-value">«Шторм»</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Система постановки дымовых завес</span>
-                                        <span class="spec-value">«Туча-2»</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Навигационная защита</span>
-                                        <span class="spec-value">Система ГЛОНАСС</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </section>
 
                     <!-- Mobility Section -->
                     <section id="mobility" class="content-section">
                         <div class="section-header">
-                            <h2>🚀 Подвижность</h2>
+                            <h2>Подвижность</h2>
                             <div class="section-badge">ХОДОВЫЕ КАЧЕСТВА</div>
                         </div>
                         
                         <div class="specs-container">
                             <div class="specs-group">
-                                <h3 class="specs-group-title">⚙️ Двигатель и трансмиссия</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Тип двигателя</span>
-                                        <span class="spec-value">А-85-3А (12Н360)</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Мощность</span>
-                                        <span class="spec-value">1500 л.с.</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Удельная мощность</span>
-                                        <span class="spec-value">27,3 л.с./т</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Тип трансмиссии</span>
-                                        <span class="spec-value">Автоматическая 8-ступенчатая</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">🏎️ Динамические характеристики</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Максимальная скорость</span>
-                                        <span class="spec-value">80-90 км/ч</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Скорость по шоссе</span>
-                                        <span class="spec-value">70-75 км/ч</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Скорость по пересечённой местности</span>
-                                        <span class="spec-value">50-60 км/ч</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Запас хода по шоссе</span>
-                                        <span class="spec-value">500 км</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">🏞️ Преодолеваемые препятствия</h3>
+                                <h3 class="specs-group-title">Преодолеваемые препятствия</h3>
                                 <div class="specs-grid">
                                     <div class="spec-item">
                                         <span class="spec-label">Подъём</span>
@@ -459,74 +420,10 @@
                         </div>
                     </section>
 
-                    <!-- Electronics Section -->
-                    <section id="electronics" class="content-section">
-                        <div class="section-header">
-                            <h2>🔌 Электронное оборудование</h2>
-                            <div class="section-badge">ЦИФРОВАЯ АРХИТЕКТУРА</div>
-                        </div>
-                        
-                        <div class="specs-container">
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">💻 Системы управления</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Информационно-управляющая система</span>
-                                        <span class="spec-value">Единая цифровая архитектура</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Станция бортовых измерений</span>
-                                        <span class="spec-value">СБИ-125</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Цифровая шина данных</span>
-                                        <span class="spec-value">Ethernet</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">📡 Средства связи и навигации</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Радиостанция</span>
-                                        <span class="spec-value">Р-168-25У-2 «Акведук»</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Спутниковая навигация</span>
-                                        <span class="spec-value">ГЛОНАСС/GPS</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Система опознавания</span>
-                                        <span class="spec-value">«свой-чужой»</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="specs-group">
-                                <h3 class="specs-group-title">👁️ Оптоэлектронные системы</h3>
-                                <div class="specs-grid">
-                                    <div class="spec-item">
-                                        <span class="spec-label">Панорамный прицел командира</span>
-                                        <span class="spec-value">С тепловизионным каналом</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Многоспектральный прицел наводчика</span>
-                                        <span class="spec-value">Лазерный дальномер</span>
-                                    </div>
-                                    <div class="spec-item">
-                                        <span class="spec-label">Система кругового обзора</span>
-                                        <span class="spec-value">Камеры 360°</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
                     <!-- History Section -->
                     <section id="history" class="content-section">
                         <div class="section-header">
-                            <h2>📜 История</h2>
+                            <h2>История</h2>
                             <div class="section-badge">РАЗРАБОТКА И ПРОИЗВОДСТВО</div>
                         </div>
                         
@@ -537,8 +434,8 @@
                                     <h4>Начало разработки</h4>
                                     <p>Начало работ по созданию универсальной гусеничной платформы «Армата» в конструкторском бюро Уралвагонзавода</p>
                                     <div class="timeline-features">
-                                        <span>📋 Техническое задание</span>
-                                        <span>🎯 Концепция платформы</span>
+                                        <span>Техническое задание</span>
+                                        <span>Концепция платформы</span>
                                     </div>
                                 </div>
                             </div>
@@ -549,8 +446,8 @@
                                     <h4>Первый прототип</h4>
                                     <p>Создание и испытания первых прототипов танка на платформе «Армата»</p>
                                     <div class="timeline-features">
-                                        <span>🔧 Сборка прототипов</span>
-                                        <span>⚙️ Заводские испытания</span>
+                                        <span>Сборка прототипов</span>
+                                        <span>Заводские испытания</span>
                                     </div>
                                 </div>
                             </div>
@@ -562,9 +459,9 @@
                                     <h4>Парад Победы</h4>
                                     <p>Т-14 «Армата» впервые публично показан на Параде Победы в Москве 9 мая 2015 года</p>
                                     <div class="timeline-features">
-                                        <span>🎉 Публичная презентация</span>
-                                        <span>📸 Мировые СМИ</span>
-                                        <span>🎯 Международный резонанс</span>
+                                        <span>Публичная презентация</span>
+                                        <span>Мировые СМИ</span>
+                                        <span>Международный резонанс</span>
                                     </div>
                                 </div>
                             </div>
@@ -575,9 +472,9 @@
                                     <h4>Государственные испытания</h4>
                                     <p>Проведение полного цикла государственных испытаний и доводка конструкции</p>
                                     <div class="timeline-features">
-                                        <span>🧪 Испытания в различных условиях</span>
-                                        <span>🔧 Доработка систем</span>
-                                        <span>📊 Анализ результатов</span>
+                                        <span>Испытания в различных условиях</span>
+                                        <span>Доработка систем</span>
+                                        <span>Анализ результатов</span>
                                     </div>
                                 </div>
                             </div>
@@ -588,9 +485,9 @@
                                     <h4>Начало серийного производства</h4>
                                     <p>Подписание контракта на поставку первой партии серийных танков Т-14 для Вооружённых сил России</p>
                                     <div class="timeline-features">
-                                        <span>🏭 Серийное производство</span>
-                                        <span>📦 Первые поставки</span>
-                                        <span>🎯 Принятие на вооружение</span>
+                                        <span>Серийное производство</span>
+                                        <span>Первые поставки</span>
+                                        <span>Принятие на вооружение</span>
                                     </div>
                                 </div>
                             </div>
@@ -605,38 +502,72 @@
                         </div>
                     </section>
 
-                    <!-- Gallery Section -->
-                    <section id="gallery" class="content-section">
+                    <!-- Modifications Section -->
+                    <section id="modifications" class="content-section">
                         <div class="section-header">
-                            <h2>🖼️ Галерея</h2>
-                            <div class="section-badge">ФОТОГРАФИИ И СХЕМЫ</div>
+                            <h2>Модификации</h2>
+                            <div class="section-badge">ВАРИАНТЫ ИСПОЛНЕНИЯ</div>
                         </div>
                         
-                        <div class="gallery-container">
-                            <div class="gallery-main">
-                                <div class="gallery-slide active">
-                                    <div class="slide-image">
-                                        <div style="font-size: 4rem;">🎯</div>
+                        <div class="modifications-grid">
+                            <div class="modification-card">
+                                <div class="modification-badge">БАЗОВАЯ</div>
+                                <h4>Т-14</h4>
+                                <div class="modification-specs">
+                                    <div class="spec">
+                                        <span>Основное вооружение</span>
+                                        <strong>125-мм 2А82-1М</strong>
                                     </div>
-                                    <div class="slide-caption">
-                                        <h4>Т-14 «Армата» - вид спереди</h4>
-                                        <p>Характерный профиль с необитаемой башней и комплексом активной защиты</p>
+                                    <div class="spec">
+                                        <span>Защита</span>
+                                        <strong>Комплекс «Афганит»</strong>
+                                    </div>
+                                    <div class="spec">
+                                        <span>Двигатель</span>
+                                        <strong>1500 л.с.</strong>
                                     </div>
                                 </div>
+                                <p class="modification-desc">Базовая модификация основного боевого танка на платформе «Армата»</p>
                             </div>
-                            
-                            <div class="gallery-controls">
-                                <button class="gallery-btn" id="prevBtn">‹</button>
-                                <div class="gallery-counter">
-                                    <span id="currentSlide">1</span> / <span id="totalSlides">1</span>
+
+                            <div class="modification-card featured">
+                                <div class="modification-badge">УЛУЧШЕННАЯ</div>
+                                <h4>Т-14М</h4>
+                                <div class="modification-specs">
+                                    <div class="spec">
+                                        <span>Основное вооружение</span>
+                                        <strong>125-мм 2А82-2М</strong>
+                                    </div>
+                                    <div class="spec">
+                                        <span>Защита</span>
+                                        <strong>«Афганит-М»</strong>
+                                    </div>
+                                    <div class="spec">
+                                        <span>Двигатель</span>
+                                        <strong>1800 л.с.</strong>
+                                    </div>
                                 </div>
-                                <button class="gallery-btn" id="nextBtn">›</button>
+                                <p class="modification-desc">Модернизированная версия с улучшенными характеристиками</p>
                             </div>
-                            
-                            <div class="gallery-thumbnails">
-                                <div class="thumbnail active">
-                                    <div class="thumb-image">1</div>
+
+                            <div class="modification-card">
+                                <div class="modification-badge">КОМАНДНАЯ</div>
+                                <h4>Т-14К</h4>
+                                <div class="modification-specs">
+                                    <div class="spec">
+                                        <span>Средства связи</span>
+                                        <strong>Усиленный комплект</strong>
+                                    </div>
+                                    <div class="spec">
+                                        <span>Навигация</span>
+                                        <strong>Дополнительные системы</strong>
+                                    </div>
+                                    <div class="spec">
+                                        <span>Экипаж</span>
+                                        <strong>4 человека</strong>
+                                    </div>
                                 </div>
+                                <p class="modification-desc">Командно-штабная машина на базе Т-14</p>
                             </div>
                         </div>
                     </section>
@@ -657,9 +588,8 @@
         </div>
         
         <div class="history-panel-content">
-            <!-- Предыстория -->
             <div class="expanded-history-section">
-                <h3>🎯 Предыстория и необходимость</h3>
+                <h3>Предыстория и необходимость</h3>
                 <div class="history-text-block">
                     <p>К началу 2000-х годов стало очевидно, что существующие основные боевые танки семейства Т-72/80/90 приближаются к пределу своей модернизационной возможности. <strong>Требовался качественно новый подход</strong> к конструкции бронетехники.</p>
                     
@@ -671,12 +601,11 @@
                 </div>
             </div>
 
-            <!-- Разработка -->
             <div class="expanded-history-section">
-                <h3>🔧 Этапы разработки</h3>
+                <h3>Этапы разработки</h3>
                 
                 <div class="history-feature-list">
-                    <h4>📋 Ключевые инновации проекта:</h4>
+                    <h4>Ключевые инновации проекта:</h4>
                     <ul>
                         <li><strong>Необитаемая башня</strong> - экипаж в бронекапсуле</li>
                         <li><strong>Универсальная платформа</strong> - единое шасси для разных машин</li>
@@ -690,18 +619,10 @@
                     
                     <p><strong>2012 год</strong> - начались ходовые испытания первых прототипов. Были выявлены и устранены数百 конструктивных недоработок.</p>
                 </div>
-                
-                <div class="history-image-caption">
-                    <div class="history-image-placeholder">
-                        <span>🛠️ Чертежи и прототипы</span>
-                    </div>
-                    <p>Ранние этапы разработки платформы «Армата»</p>
-                </div>
             </div>
 
-            <!-- Испытания -->
             <div class="expanded-history-section">
-                <h3>🧪 Государственные испытания</h3>
+                <h3>Государственные испытания</h3>
                 
                 <div class="history-stats-grid">
                     <div class="history-stat-card">
@@ -736,9 +657,8 @@
                 </div>
             </div>
 
-            <!-- Принятие на вооружение -->
             <div class="expanded-history-section">
-                <h3>🎖️ Принятие на вооружение</h3>
+                <h3>Принятие на вооружение</h3>
                 
                 <div class="history-text-block">
                     <p><strong>9 мая 2015 года</strong> - танк впервые публично показан на Параде Победы в Москве. Это вызвало <strong>мировой резонанс</strong> среди военных экспертов.</p>
@@ -817,215 +737,67 @@
         </div>
     </footer>
 
+    <script src="../js/vehicle-details.js"></script>
     <script>
-        // Enhanced Vehicle Details Page Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab functionality
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Remove active class from all buttons and contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Add active class to current button and content
-                    this.classList.add('active');
-                    document.getElementById(tabId + '-tab').classList.add('active');
-                });
-            });
+        // Expanded History Functionality
+        function initExpandedHistory() {
+            const expandHistoryBtn = document.getElementById('expandHistoryFull');
+            const historyPanel = document.getElementById('historyExpandedPanel');
+            const historyOverlay = document.getElementById('historyOverlay');
+            const closeHistoryBtn = document.getElementById('closeHistoryPanel');
 
-            // Gallery functionality
-            const slides = document.querySelectorAll('.gallery-slide');
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const currentSlideEl = document.getElementById('currentSlide');
-            const totalSlidesEl = document.getElementById('totalSlides');
-            
-            let currentSlide = 0;
-            const totalSlides = slides.length;
-            
-            totalSlidesEl.textContent = totalSlides;
-            
-            function showSlide(index) {
-                // Hide all slides
-                slides.forEach(slide => slide.classList.remove('active'));
-                thumbnails.forEach(thumb => thumb.classList.remove('active'));
-                
-                // Show current slide
-                slides[index].classList.add('active');
-                thumbnails[index].classList.add('active');
-                currentSlideEl.textContent = index + 1;
-                currentSlide = index;
+            if (expandHistoryBtn && historyPanel) {
+                expandHistoryBtn.addEventListener('click', () => {
+                    historyPanel.classList.add('active');
+                    historyOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
             }
-            
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                showSlide(currentSlide);
+
+            if (closeHistoryBtn) {
+                closeHistoryBtn.addEventListener('click', closeHistoryPanel);
             }
-            
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                showSlide(currentSlide);
+
+            if (historyOverlay) {
+                historyOverlay.addEventListener('click', closeHistoryPanel);
             }
-            
-            // Event listeners for gallery
-            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-            
-            thumbnails.forEach((thumb, index) => {
-                thumb.addEventListener('click', () => showSlide(index));
-            });
-            
-            // Keyboard navigation for gallery
+
+            // Close on Escape key
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') prevSlide();
-                if (e.key === 'ArrowRight') nextSlide();
+                if (e.key === 'Escape' && historyPanel.classList.contains('active')) {
+                    closeHistoryPanel();
+                }
             });
+        }
 
-            // Expandable history functionality
-            const expandButtons = document.querySelectorAll('.expand-history-btn');
+        function closeHistoryPanel() {
+            const historyPanel = document.getElementById('historyExpandedPanel');
+            const historyOverlay = document.getElementById('historyOverlay');
             
-            expandButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const historyId = this.getAttribute('data-history');
-                    const details = document.getElementById(`history-${historyId}`);
+            historyPanel.classList.remove('active');
+            historyOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Toggle Specifications
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleSpecs = document.getElementById('toggleSpecs');
+            const advancedSpecs = document.getElementById('advancedSpecs');
+            
+            if (toggleSpecs && advancedSpecs) {
+                toggleSpecs.addEventListener('click', () => {
+                    advancedSpecs.classList.toggle('active');
                     
-                    this.classList.toggle('active');
-                    details.classList.toggle('active');
-                    
-                    // Update button text
-                    const span = this.querySelector('span:first-child');
-                    if (details.classList.contains('active')) {
-                        span.textContent = 'Скрыть детали';
+                    if (advancedSpecs.classList.contains('active')) {
+                        toggleSpecs.innerHTML = '<span>Скрыть детали</span><span>▲</span>';
                     } else {
-                        span.textContent = this.getAttribute('data-original-text') || 'Подробнее';
+                        toggleSpecs.innerHTML = '<span>Показать все</span><span>▼</span>';
                     }
                 });
-                
-                // Store original text
-                const originalText = button.querySelector('span:first-child').textContent;
-                button.setAttribute('data-original-text', originalText);
-            });
-
-            // Floating navigation functionality
-            const navItems = document.querySelectorAll('.nav-item');
-            const sections = document.querySelectorAll('.content-section');
-            
-            function updateActiveNav() {
-                const scrollPos = window.scrollY + 100;
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    const sectionId = section.getAttribute('id');
-                    
-                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                        navItems.forEach(item => {
-                            item.classList.remove('active');
-                            if (item.getAttribute('href') === `#${sectionId}`) {
-                                item.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }
-            
-            // Smooth scrolling for navigation
-            const sidebarNavLinks = document.querySelectorAll('.sidebar-nav .nav-link');
-            sidebarNavLinks.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Update active nav item
-                    sidebarNavLinks.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Scroll to section
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-            
-            // Update active nav on scroll
-            window.addEventListener('scroll', updateActiveNav);
-            
-            // Initial call
-            updateActiveNav();
-
-            // Add animation to timeline items
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateX(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            timelineItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-20px)';
-                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(item);
-            });
-
-            // Expanded History Functionality
-            function initExpandedHistory() {
-                const expandHistoryBtn = document.getElementById('expandHistoryFull');
-                const historyPanel = document.getElementById('historyExpandedPanel');
-                const historyOverlay = document.getElementById('historyOverlay');
-                const closeHistoryBtn = document.getElementById('closeHistoryPanel');
-
-                if (expandHistoryBtn && historyPanel) {
-                    expandHistoryBtn.addEventListener('click', () => {
-                        historyPanel.classList.add('active');
-                        historyOverlay.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    });
-                }
-
-                if (closeHistoryBtn) {
-                    closeHistoryBtn.addEventListener('click', closeHistoryPanel);
-                }
-
-                if (historyOverlay) {
-                    historyOverlay.addEventListener('click', closeHistoryPanel);
-                }
-
-                // Close on Escape key
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && historyPanel.classList.contains('active')) {
-                        closeHistoryPanel();
-                    }
-                });
-            }
-
-            function closeHistoryPanel() {
-                const historyPanel = document.getElementById('historyExpandedPanel');
-                const historyOverlay = document.getElementById('historyOverlay');
-                
-                historyPanel.classList.remove('active');
-                historyOverlay.classList.remove('active');
-                document.body.style.overflow = '';
             }
 
             // Initialize expanded history
             initExpandedHistory();
-
-            console.log('Enhanced vehicle details page loaded! 🎯');
         });
     </script>
 </body>
